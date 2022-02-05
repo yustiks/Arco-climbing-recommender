@@ -5,11 +5,10 @@
     <title>Flask Leaflet Website</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -17,13 +16,20 @@
     <!--[if lte IE 8]><link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet-sidebar.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}"/>
 </head>
 
 <body>
     <div id="map" class="sidebar-map"></div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""></script>
+    <div id="explanation">
+        <div class="explanation_text">
+            The explanation text will be posted here.
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+
     <script src="{{ url_for('static', filename='js/leaflet-sidebar.js') }}"></script>
 
 
@@ -31,7 +37,7 @@
         <!-- Nav tabs -->
         <div class="leaflet-sidebar-tabs">
             <ul role="tablist"> <!-- top aligned tabs -->
-                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                <li class="active"><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
             </ul>
 
@@ -43,18 +49,8 @@
         <!-- Tab panes -->
         <div class="leaflet-sidebar-content">
             <!-- Home -->
-            <!-- List of routes -->
-            <div class="leaflet-sidebar-pane" id="home">
-                <h1 class="leaflet-sidebar-header">
-                    sidebar-v2
-                    <div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div>
-                </h1>
-                    <div class="container">
-                        Hello
-                    </div>
-            </div>
             <!-- Profile -->
-            <div class="leaflet-sidebar-pane" id="profile">
+            <div class="leaflet-sidebar-pane active" id="profile">
                 <h1 class="leaflet-sidebar-header">
                     Pereferences
                     <div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div>
@@ -79,88 +75,128 @@
                                 <div class="mb-3">
                                     <label class="form-label" id="label_style">Favourite climbing styles</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-athletic" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-athletic">Athletic</label>
+                                    <input name="athletic" type="checkbox" class="btn-check" id="btn-athletic"
+                                            {% if data['athletic'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="athletic" class="btn btn-primary" for="btn-athletic">Athletic</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-cruxy" Technical="off">
-                                    <label class="btn btn-primary" for="btn-cruxy">Cruxy</label>
+                                    <input name="cruxy" type="checkbox" class="btn-check" id="btn-cruxy"
+                                           {% if data['cruxy'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="cruxy" class="btn btn-primary" for="btn-cruxy">Cruxy</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-endurance" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-endurance">Endurance</label>
+                                    <input name="endurance" type="checkbox" class="btn-check" id="btn-endurance"
+                                           {% if data['endurance'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="endurance" class="btn btn-primary" for="btn-endurance">Endurance</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-crimpy" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-crimpy">Crimpy</label>
+                                    <input name="crimpy" type="checkbox" class="btn-check" id="btn-crimpy"
+                                           {% if data['crimpy'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="crimpy" class="btn btn-primary" for="btn-crimpy">Crimpy</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-sloper" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-sloper">Sloper</label>
+                                    <input name="sloper" type="checkbox" class="btn-check" id="btn-sloper"
+                                           {% if data['sloper'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="sloper" class="btn btn-primary" for="btn-sloper">Sloper</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-technical" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-technical">Technical</label>
+                                    <input name="technical" type="checkbox" class="btn-check" id="btn-technical"
+                                           {% if data['technical'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="technical" class="btn btn-primary" for="btn-technical">Technical</label>
 
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" id="label_style">Least used climbing styles</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-least-athletic" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-least-athletic">Athletic</label>
+                                    <input name="athletic_least" type="checkbox" class="btn-check" id="btn-least-athletic"
+                                           {% if data['athletic_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="athletic_least" class="btn btn-primary" for="btn-least-athletic">Athletic</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-least-cruxy" Technical="off">
-                                    <label class="btn btn-primary" for="btn-least-cruxy">Cruxy</label>
+                                    <input name="cruxy_least" type="checkbox" class="btn-check" id="btn-least-cruxy"
+                                           {% if data['cruxy_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="cruxy_least" class="btn btn-primary" for="btn-least-cruxy">Cruxy</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-least-endurance" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-least-endurance">Endurance</label>
+                                    <input name="endurance_least" type="checkbox" class="btn-check" id="btn-least-endurance"
+                                           {% if data['endurance_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="endurance_least" class="btn btn-primary" for="btn-least-endurance">Endurance</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-least-crimpy" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-least-crimpy">Crimpy</label>
+                                    <input name="crimpy_least" type="checkbox" class="btn-check" id="btn-least-crimpy"
+                                           {% if data['crimpy_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="crimpy_least" class="btn btn-primary" for="btn-least-crimpy">Crimpy</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-least-sloper" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-least-sloper">Sloper</label>
+                                    <input name="sloper_least" type="checkbox" class="btn-check" id="btn-least-sloper"
+                                           {% if data['sloper_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="sloper_least" class="btn btn-primary" for="btn-least-sloper">Sloper</label>
 
-                                    <input type="checkbox" class="btn-check" id="btn-least-technical" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-least-technical">Technical</label>
-
+                                    <input name="technical_least" type="checkbox" class="btn-check" id="btn-least-technical"
+                                           {% if data['technical_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="technical_least" class="btn btn-primary" for="btn-least-technical">Technical</label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="grade" class="form-label" id="label_grade">Climbing grades</label>
                                     <label for="grade" class="form-label" id="label_grade_not_inserted" style="color: #c82829;
                                         display: none">Climbing grades should be inserted</label>
-                                    <input type="checkbox" class="btn-check" id="btn-4" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-4">4</label>
-                                    <input type="checkbox" class="btn-check" id="btn-5" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-5">5</label>
-                                    <input type="checkbox" class="btn-check" id="btn-6a" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-6a">6a</label>
-                                    <input type="checkbox" class="btn-check" id="btn-6b" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-6b">6b</label>
-                                    <input type="checkbox" class="btn-check" id="btn-6c" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-6c">6c</label>
-                                    <input type="checkbox" class="btn-check" id="btn-7a" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-7a">7a</label>
-                                    <input type="checkbox" class="btn-check" id="btn-7b" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-7b">7b</label>
-                                    <input type="checkbox" class="btn-check" id="btn-7c" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-7c">7c</label>
-                                    <input type="checkbox" class="btn-check" id="btn-8a" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-8a">8a</label>
-                                    <input type="checkbox" class="btn-check" id="btn-8b" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-8b">8b</label>
-                                    <input type="checkbox" class="btn-check" id="btn-8c" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-8c">8c</label>
-                                    <input type="checkbox" class="btn-check" id="btn-9a" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-9a">9a</label>
+                                    <input name="4" type="checkbox" class="btn-check" id="btn-4"
+                                           {% if data['checked_grades']['4'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="4" class="btn btn-primary" for="btn-4">4</label>
+                                    <input name="5a" type="checkbox" class="btn-check" id="btn-5a"
+                                           {% if data['checked_grades']['5a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="5a" class="btn btn-primary" for="btn-5a">5a</label>
+                                    <input name="5b" type="checkbox" class="btn-check" id="btn-5b"
+                                           {% if data['checked_grades']['5b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="5b" class="btn btn-primary" for="btn-5b">5b</label>
+                                    <input name="5c" type="checkbox" class="btn-check" id="btn-5c"
+                                           {% if data['checked_grades']['5c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="5c" class="btn btn-primary" for="btn-5c">5c</label>
+                                    <input name="6a" type="checkbox" class="btn-check" id="btn-6a"
+                                           {% if data['checked_grades']['6a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="6a" class="btn btn-primary" for="btn-6a">6a</label>
+                                    <input name="6b" type="checkbox" class="btn-check" id="btn-6b"
+                                           {% if data['checked_grades']['6b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="6b" class="btn btn-primary" for="btn-6b">6b</label>
+                                    <input name="6c" type="checkbox" class="btn-check" id="btn-6c"
+                                           {% if data['checked_grades']['6c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="6c" class="btn btn-primary" for="btn-6c">6c</label>
+
+                                    <input name="7a" type="checkbox" class="btn-check" id="btn-7a"
+                                           {% if data['checked_grades']['7a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="7a" class="btn btn-primary" for="btn-7a">7a</label>
+                                    <input name="7b" type="checkbox" class="btn-check" id="btn-7b"
+                                           {% if data['checked_grades']['7b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="7b" class="btn btn-primary" for="btn-7b">7b</label>
+                                    <input name="7c" type="checkbox" class="btn-check" id="btn-7c"
+                                           {% if data['checked_grades']['7c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="7c" class="btn btn-primary" for="btn-7c">7c</label>
+                                    <input name="8a" type="checkbox" class="btn-check" id="btn-8a"
+                                           {% if data['checked_grades']['8a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="8a" class="btn btn-primary" for="btn-8a">8a</label>
+                                    <input name="8b" type="checkbox" class="btn-check" id="btn-8b"
+                                           {% if data['checked_grades']['8b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="8b" class="btn btn-primary" for="btn-8b">8b</label>
+                                    <input name="8c" type="checkbox" class="btn-check" id="btn-8c"
+                                           {% if data['checked_grades']['8c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="8c" class="btn btn-primary" for="btn-8c">8c</label>
+                                    <input name="9a" type="checkbox" class="btn-check" id="btn-9a"
+                                           {% if data['checked_grades']['9a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="9a" class="btn btn-primary" for="btn-9a">9a</label>
+                                    <input name="9b" type="checkbox" class="btn-check" id="btn-9b"
+                                           {% if data['checked_grades']['9b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="9b" class="btn btn-primary" for="btn-9b">9b</label>
+                                    <input name="9c" type="checkbox" class="btn-check" id="btn-9c"
+                                           {% if data['checked_grades']['9c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="9c" class="btn btn-primary" for="btn-9c">9c</label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="discipline" class="form-label" id="label_steepness">Favourite wall steepness</label>
                                     <label for="discipline" class="form-label" id="label_steepness_not_inserted" style="color: #c82829;
                                         display: none">Wall steepness should be inserted</label>
-                                    <input type="checkbox" class="btn-check" id="btn-slab" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-slab">Slab</label>
-                                    <input type="checkbox" class="btn-check" id="btn-vertical" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-vertical">Vertical</label>
-                                    <input type="checkbox" class="btn-check" id="btn-overhang" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-overhang">Overhang</label>
-                                    <input type="checkbox" class="btn-check" id="btn-roof" autocomplete="off">
-                                    <label class="btn btn-primary" for="btn-roof">Roof</label>
+                                    <input name="slab" type="checkbox" class="btn-check" id="btn-slab"
+                                           {% if data['slab'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="slab" class="btn btn-primary" for="btn-slab"><i class="bi bi-arrow-up-right"></i>Slab</label>
+                                    <input name="vertical" type="checkbox" class="btn-check" id="btn-vertical"
+                                           {% if data['vertical'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="vertical" class="btn btn-primary" for="btn-vertical"><i class="bi bi-arrow-up-short"></i>Vertical</label>
+                                    <input name="overhang" type="checkbox" class="btn-check" id="btn-overhang"
+                                           {% if data['overhang'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="overhang" class="btn btn-primary" for="btn-overhang"><i class="bi bi-arrow-up-left"></i>Overhang</label>
+                                    <input name="roof" type="checkbox" class="btn-check" id="btn-roof"
+                                           {% if data['roof'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="roof" class="btn btn-primary" for="btn-roof"><i class="bi bi-arrow-right-short"></i>Roof</label>
                                 </div>
                             </div>
 
@@ -168,7 +204,7 @@
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-sm">
-                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                                      <button hidden='True' type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
                                               id="btnHome" name='action' value="home">Refresh</button>
                                     </div>
                                     <div class="col-sm">
@@ -182,16 +218,68 @@
                     </div>
             </div>
             <!-- End profile -->
+            <!-- List of routes -->
+            <div class="leaflet-sidebar-pane" id="home">
+                <h1 class="leaflet-sidebar-header">
+                    List of crags
+                    <div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div>
+                </h1>
+                    <div class="container">
+                    {% if crags_recommendation=='on' %}
+                        <ul class="list-group">
+
+                        {% for crag in recommended_crags %}
+                            <li class="list-group-item">Crag: {{ crag }}, Number of suitable routes: {{ crags_with_routes[crag] }}</li>
+                        {% endfor %}
+                        </ul>
+                    </ul>
+                    {% endif %}
+                    </div>
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/universal.js') }}"/>
     </script>
     <script>
-
+        var greenIcon = L.icon({
+            iconUrl: '{{ url_for('static', filename='img/green_circle.png') }}',
+            shadowUrl: '{{ url_for('static', filename='img/shadow_bolt.png') }}',
+            iconSize:     [30, 30], // size of the icon
+            shadowSize:   [30, 40], // size of the shadow
+        });
+        var greyIcon = L.icon({
+            iconUrl: '{{ url_for('static', filename='img/grey_circle.png') }}',
+            shadowUrl: '{{ url_for('static', filename='img/shadow_bolt.png') }}',
+            iconSize:     [30, 30], // size of the icon
+            shadowSize:   [30, 40], // size of the shadow
+        });
+        var yellowIcon = L.icon({
+            iconUrl: '{{ url_for('static', filename='img/yellow_circle.png') }}',
+            shadowUrl: '{{ url_for('static', filename='img/shadow_bolt.png') }}',
+            iconSize:     [30, 30], // size of the icon
+            shadowSize:   [30, 40], // size of the shadow
+        });
+        <!-- change the color when clicked -->
+        map.on('popupopen', function(e) {
+          var marker = e.popup._source;
+          marker.setIcon(yellowIcon);
+        });
+        map.on('popupclose', function(e) {
+          var marker = e.popup._source;
+          marker.setIcon({% if crags_recommendation == 'on' %} greenIcon {% else %} greyIcon {% endif %});
+        });
+        <!-- end change of color when clicked -->
         {% for marker in markers %}
-            L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}]).addTo(map)
-                .bindPopup("{{ marker['popup'] }}")
-                .openPopup();
+            {% if crags_recommendation == 'on' %}
+                var current_icon = greenIcon;
+                current_icon.options.iconSize = [{{ marker['size'] }}, {{ marker['size'] }}];
+                current_icon.options.shadowSize = [{{ marker['size'] }}, {{ marker['size'] }}];
+                var current_marker = L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}], {icon: current_icon}).addTo(map);
+                current_marker.bindPopup("Name: {{ marker['name'] }}, Routes: {{ marker['routes'] }}, Recommended routes: {{ marker['recommended_routes'] }}");
+            {% else %}
+                var current_marker = L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}], {icon: greyIcon}).addTo(map);
+                current_marker.bindPopup("Name: {{ marker['name'] }}, Routes: {{ marker['routes'] }}, Ascents: {{ marker['ascents'] }}");
+            {% endif %}
         {% endfor %}
 
     </script>
