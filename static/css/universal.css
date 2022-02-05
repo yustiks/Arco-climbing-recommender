@@ -13,4 +13,36 @@ html, body, #map {
     color: #AAA;
 }
 
+.icon-athletic {
+    background-image: url("http://cdn5.iconfinder.com/data/icons/Symbolicons_Transportation/24/Car.png");
+    background-position: center center;
+}
 
+#explanation {
+    position: absolute;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    top: 20px;
+    left: 50px;
+    width: 300px;
+    height: 120px;
+    z-index: 1000;
+    border: solid 5px #aaaaaa;
+    box-shadow: 0 0 10px #4d4d4c;
+    background-color: #aaaaaa;
+    background-size: auto;
+    padding: 5px 5px 5px 15px;
+    display: none;
+}
+
+.explanation_text {
+    margin: 5px 5px 5px 5px;
+    margin-block: 5px 5px;
+}
+
+.btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
+    color: black;
+    background-color: darkgoldenrod;
+    border-color: saddlebrown;
+}
