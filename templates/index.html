@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Flask Leaflet Website</title>
+    <title>Climbing recommender</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,9 +41,6 @@
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
             </ul>
 
-            <ul role="tablist"> <!-- bottom aligned tabs -->
-                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-            </ul>
         </div>
 
         <!-- Tab panes -->
@@ -59,18 +56,19 @@
                         <form id="form" method="get" action="recommended_crags">
                             <div>
                                 <div class="mb-3">
-                                    <p class="fs-3">User id:</p>
+                                    <label for="user_id">User id:</label>
+                                    <input readonly="True" name="user_id" id="user_id" value="{{ data.user_id }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="type_recommendation" class="form-label" id="label_type_recommendation">
-                                        Recommendation type</label>
+                                        Choose recommendation type</label>
                                     <select name="type_recommendation" class="form-control" id="type_recommendation">
                                         <option value="favourite" selected>Favourite moves</option>
                                         <option value="training">Training</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <p class="fs-5">Your preferences:</p>
+                                    <p class="fs-5">Adjust your preferences:</p>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" id="label_style">Favourite climbing styles</label>
@@ -183,8 +181,6 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="discipline" class="form-label" id="label_steepness">Favourite wall steepness</label>
-                                    <label for="discipline" class="form-label" id="label_steepness_not_inserted" style="color: #c82829;
-                                        display: none">Wall steepness should be inserted</label>
                                     <input name="slab" type="checkbox" class="btn-check" id="btn-slab"
                                            {% if data['slab'] == 1 %} checked {% endif %} autocomplete="off">
                                     <label value="slab" class="btn btn-primary" for="btn-slab"><i class="bi bi-arrow-up-right"></i>Slab</label>
@@ -204,8 +200,8 @@
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-sm">
-                                      <button hidden='True' type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
-                                              id="btnHome" name='action' value="home">Refresh</button>
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                                              id="btnHome" name='action' value="refresh">Refresh</button>
                                     </div>
                                     <div class="col-sm">
                                       <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
@@ -262,23 +258,133 @@
         <!-- change the color when clicked -->
         map.on('popupopen', function(e) {
           var marker = e.popup._source;
-          marker.setIcon(yellowIcon);
+          var current_icon = yellowIcon;
+          current_icon.options.iconSize = [ marker['size'], marker['size'] ];
+          current_icon.options.shadowSize = [ marker['size'] , marker['size'] ];
+          marker.setIcon(current_icon);
         });
         map.on('popupclose', function(e) {
           var marker = e.popup._source;
-          marker.setIcon({% if crags_recommendation == 'on' %} greenIcon {% else %} greyIcon {% endif %});
+          var current_icon = greenIcon;
+          current_icon.options.iconSize = [ marker['size'], marker['size'] ];
+          current_icon.options.shadowSize = [ marker['size'] , marker['size'] ];
+          marker.setIcon({% if crags_recommendation == 'on' %} current_icon {% else %} greyIcon {% endif %});
         });
         <!-- end change of color when clicked -->
+        <!-- calculation for pop-up windows -->
+        let discipline, grade, athletic, cruxy, endurance, crimpy, sloper, technical, vertical, overhang, roof;
+        let slab, type_recommendation;
+        let least_athletic, least_cruxy, least_endurance, least_crimpy, least_sloper, least_technical;
+        let explanation_text, recommended_style, user_id;
+        user_id = document.getElementById('form').elements['user_id'].value;
+
+        athletic = document.getElementById('form').elements['btn-athletic'].checked ? 'on' : 0;
+        cruxy = document.getElementById('form').elements['btn-cruxy'].checked ? 'on' : 0;
+        endurance = document.getElementById('form').elements['btn-endurance'].checked ? 'on' : 0;
+        crimpy = document.getElementById('form').elements['btn-crimpy'].checked ? 'on' : 0;
+        sloper = document.getElementById('form').elements['btn-sloper'].checked ? 'on' : 0;
+        technical = document.getElementById('form').elements['btn-technical'].checked ? 'on' : 0;
+
+        least_athletic = document.getElementById('form').elements['btn-least-athletic'].checked ? 'on' : 0;
+        least_cruxy = document.getElementById('form').elements['btn-least-cruxy'].checked ? 'on' : 0;
+        least_endurance = document.getElementById('form').elements['btn-least-endurance'].checked ? 'on' : 0;
+        least_crimpy = document.getElementById('form').elements['btn-least-crimpy'].checked ? 'on' : 0;
+        least_sloper = document.getElementById('form').elements['btn-least-sloper'].checked ? 'on' : 0;
+        least_technical = document.getElementById('form').elements['btn-least-technical'].checked ? 'on' : 0;
+
+        vertical = document.getElementById('form').elements['btn-vertical'].checked ? 'on' : 0;
+        overhang = document.getElementById('form').elements['btn-overhang'].checked ? 'on' : 0;
+        roof = document.getElementById('form').elements['btn-roof'].checked ? 'on' : 0;
+        slab = document.getElementById('form').elements['btn-slab'].checked ? 'on' : 0;
+
+        grade_4 = document.getElementById('form').elements['btn-4'].checked ? 'on' : 0;
+        grade_5a = document.getElementById('form').elements['btn-5a'].checked ? 'on' : 0;
+        grade_5b = document.getElementById('form').elements['btn-5b'].checked ? 'on' : 0;
+        grade_5c = document.getElementById('form').elements['btn-5c'].checked ? 'on' : 0;
+        grade_6a = document.getElementById('form').elements['btn-6a'].checked ? 'on' : 0;
+        grade_6b = document.getElementById('form').elements['btn-6b'].checked ? 'on' : 0;
+        grade_6c = document.getElementById('form').elements['btn-6c'].checked ? 'on' : 0;
+        grade_7a = document.getElementById('form').elements['btn-7a'].checked ? 'on' : 0;
+        grade_7b = document.getElementById('form').elements['btn-7b'].checked ? 'on' : 0;
+        grade_7c = document.getElementById('form').elements['btn-7c'].checked ? 'on' : 0;
+        grade_8a = document.getElementById('form').elements['btn-8a'].checked ? 'on' : 0;
+        grade_8b = document.getElementById('form').elements['btn-8b'].checked ? 'on' : 0;
+        grade_8c = document.getElementById('form').elements['btn-8c'].checked ? 'on' : 0;
+        grade_9a = document.getElementById('form').elements['btn-9a'].checked ? 'on' : 0;
+        grade_9b = document.getElementById('form').elements['btn-9b'].checked ? 'on' : 0;
+        grade_9c = document.getElementById('form').elements['btn-9c'].checked ? 'on' : 0;
+
+        type_recommendation = document.getElementById('form').elements['type_recommendation'].value;
+        <!-- end of calculationg for pop-up windows -->
+        let popup_text = ``;
         {% for marker in markers %}
+            popup_text = `
+                    <div class="card" style="width: 18rem;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                        <h5 class="card-title">{{ marker['name'] }}</h5>
+                        <p class="card-text">Number routes: {{ marker['routes'] }}</p>
+                        <p class="card-text">Number of ascents: {{ marker['ascents'] }}</p>
+                        {% if cold_start == False %}
+                        <p class="card-text">Recommended routes: {{ marker['recommended_routes'] }}</p>
+                        {% endif %}
+                        <form method="get" action="routes" class="inline">
+                          <input type="hidden" name="cragSlug" value="{{ marker['cragSlug'] }}">
+                          <input type="hidden" name="cragName" value="{{ marker['name'] }}">
+                          <input type="hidden" name="user_id" value="${user_id}">
+                          <input type="hidden" name="athletic" value="${athletic}">
+                          <input type="hidden" name="cruxy" value="${cruxy}">
+                          <input type="hidden" name="endurance" value="${endurance}">
+                          <input type="hidden" name="crimpy" value="${crimpy}">
+                          <input type="hidden" name="sloper" value="${sloper}">
+                          <input type="hidden" name="technical" value="${technical}">
+                          <input type="hidden" name="athletic_least" value="${least_athletic}">
+                          <input type="hidden" name="cruxy_least" value="${least_cruxy}">
+                          <input type="hidden" name="endurance_least" value="${least_endurance}">
+                          <input type="hidden" name="crimpy_least" value="${least_crimpy}">
+                          <input type="hidden" name="sloper_least" value="${least_sloper}">
+                          <input type="hidden" name="technical_least" value="${least_technical}">
+                          <input type="hidden" name="vertical" value="${vertical}">
+                          <input type="hidden" name="overhang" value="${overhang}">
+                          <input type="hidden" name="roof" value="${roof}">
+                          <input type="hidden" name="slab" value="${slab}">
+                          <input type="hidden" name="4" value="${grade_4}">
+                          <input type="hidden" name="5a" value="${grade_5a}">
+                          <input type="hidden" name="5b" value="${grade_5b}">
+                          <input type="hidden" name="5c" value="${grade_5c}">
+                          <input type="hidden" name="6a" value="${grade_6a}">
+                          <input type="hidden" name="6b" value="${grade_6b}">
+                          <input type="hidden" name="6c" value="${grade_6c}">
+                          <input type="hidden" name="7a" value="${grade_7a}">
+                          <input type="hidden" name="7b" value="${grade_7b}">
+                          <input type="hidden" name="7c" value="${grade_7c}">
+                          <input type="hidden" name="8a" value="${grade_8a}">
+                          <input type="hidden" name="8b" value="${grade_8b}">
+                          <input type="hidden" name="8c" value="${grade_8c}">
+                          <input type="hidden" name="9a" value="${grade_9a}">
+                          <input type="hidden" name="9b" value="${grade_9b}">
+                          <input type="hidden" name="9c" value="${grade_9c}">
+                          <input type="hidden" name="type_recommendation" value="${type_recommendation}">
+                          <button type="submit" name="submit_param" value="submit_value" class="btn btn-primary">
+                            Check the crag
+                          </button>
+                        </form>
+                    </div>
+                        `;
+
             {% if crags_recommendation == 'on' %}
                 var current_icon = greenIcon;
                 current_icon.options.iconSize = [{{ marker['size'] }}, {{ marker['size'] }}];
                 current_icon.options.shadowSize = [{{ marker['size'] }}, {{ marker['size'] }}];
                 var current_marker = L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}], {icon: current_icon}).addTo(map);
-                current_marker.bindPopup("Name: {{ marker['name'] }}, Routes: {{ marker['routes'] }}, Recommended routes: {{ marker['recommended_routes'] }}");
+                {% if cold_start %}
+                    current_marker.bindPopup(popup_text);
+                {% else %}
+                    current_marker.bindPopup(popup_text);
+                {% endif %}
             {% else %}
                 var current_marker = L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}], {icon: greyIcon}).addTo(map);
-                current_marker.bindPopup("Name: {{ marker['name'] }}, Routes: {{ marker['routes'] }}, Ascents: {{ marker['ascents'] }}");
+                current_marker.bindPopup(popup_text);
             {% endif %}
         {% endfor %}
 

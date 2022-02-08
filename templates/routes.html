@@ -2,61 +2,279 @@
 <html lang="en">
 
 <head>
-    <title>Flask Leaflet Website</title>
+    <title>Climbing recommender</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""/>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}"/>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-            crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
 <body>
 
-    <div class="container-fluid text-center body_table" id="routes_page">
-
-        <div class="jumbotron text-center">
-            <h1>Climbing routes recommender in crag </h1>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="full_list">
-                    <table class="table table-responsive-md" id="table_sportclimbing">
-                        <thead class="thead-dark">
-                        <tr><th scope="col" colspan="12">Sport Climbing Routes</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr class="table-primary"><th scope="col" colspan="12">Sector Name: Name</th></tr>
-                        <tr class="table-active">
-                            <th scope="col">Name</th>
-                            <th>Grade</th>
-                            <th>Climbing style</th>
-                            <th>Wall steepness</th>
-                        </tr>
-                        <tr class="table-condensed">
-                            <th scope="col">Name</th>
-                            <th>difficulty</th>
-                            <th>style</th>
-                            <th>steepness</th>
-                        </tr>
-                        <tbody>
-                    </table>
+   <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-auto bg-light sticky-top">
+                <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
+                    <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
+                        <li>
+                            <a href="/index?user_id={{ data.user_id }}" class = "gohome" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                                <i class="bi-house fs-1"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#offcanvasExample" class="nav-link py-3 px-2" title="" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample" data-bs-placement="right" data-bs-original-title="Preferences">
+                                <i class="bi-person-fill fs-1"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-
             </div>
+            <div class="col-sm p-3 min-vh-100">
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                  <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Preferences</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <div class="container">
+                        <form id="form" method="get" action="recommended_routes">
+                            <div>
+                                <div class="mb-3">
+                                    <label for="user_id">User id:</label>
+                                    <input readonly="True" name="user_id" id="user_id" value="{{ data.user_id }}">
+                                    <input hidden="True" name="cragSlug" id="cragSlug" value="{{ cragSlug }}">
+                                    <input hidden="True" name="cragName" id="cragName" value="{{ cragName }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="type_recommendation" class="form-label" id="label_type_recommendation">
+                                        Choose recommendation type</label>
+                                    <select name="type_recommendation" class="form-control" id="type_recommendation">
+                                        <option value="favourite" selected>Favourite moves</option>
+                                        <option value="training">Training</option>
+                                        <option value="motivation">Motivation</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <p class="fs-5">Adjust your preferences:</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" id="label_style">Favourite climbing styles</label>
+
+                                    <input name="athletic" type="checkbox" class="btn-check" id="btn-athletic"
+                                            {% if data['athletic'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="athletic" class="btn btn-primary" for="btn-athletic">Athletic</label>
+
+                                    <input name="cruxy" type="checkbox" class="btn-check" id="btn-cruxy"
+                                           {% if data['cruxy'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="cruxy" class="btn btn-primary" for="btn-cruxy">Cruxy</label>
+
+                                    <input name="endurance" type="checkbox" class="btn-check" id="btn-endurance"
+                                           {% if data['endurance'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="endurance" class="btn btn-primary" for="btn-endurance">Endurance</label>
+
+                                    <input name="crimpy" type="checkbox" class="btn-check" id="btn-crimpy"
+                                           {% if data['crimpy'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="crimpy" class="btn btn-primary" for="btn-crimpy">Crimpy</label>
+
+                                    <input name="sloper" type="checkbox" class="btn-check" id="btn-sloper"
+                                           {% if data['sloper'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="sloper" class="btn btn-primary" for="btn-sloper">Sloper</label>
+
+                                    <input name="technical" type="checkbox" class="btn-check" id="btn-technical"
+                                           {% if data['technical'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="technical" class="btn btn-primary" for="btn-technical">Technical</label>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" id="label_style">Least used climbing styles</label>
+
+                                    <input name="athletic_least" type="checkbox" class="btn-check" id="btn-least-athletic"
+                                           {% if data['athletic_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="athletic_least" class="btn btn-primary" for="btn-least-athletic">Athletic</label>
+
+                                    <input name="cruxy_least" type="checkbox" class="btn-check" id="btn-least-cruxy"
+                                           {% if data['cruxy_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="cruxy_least" class="btn btn-primary" for="btn-least-cruxy">Cruxy</label>
+
+                                    <input name="endurance_least" type="checkbox" class="btn-check" id="btn-least-endurance"
+                                           {% if data['endurance_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="endurance_least" class="btn btn-primary" for="btn-least-endurance">Endurance</label>
+
+                                    <input name="crimpy_least" type="checkbox" class="btn-check" id="btn-least-crimpy"
+                                           {% if data['crimpy_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="crimpy_least" class="btn btn-primary" for="btn-least-crimpy">Crimpy</label>
+
+                                    <input name="sloper_least" type="checkbox" class="btn-check" id="btn-least-sloper"
+                                           {% if data['sloper_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="sloper_least" class="btn btn-primary" for="btn-least-sloper">Sloper</label>
+
+                                    <input name="technical_least" type="checkbox" class="btn-check" id="btn-least-technical"
+                                           {% if data['technical_least'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="technical_least" class="btn btn-primary" for="btn-least-technical">Technical</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="grade" class="form-label" id="label_grade">Climbing grades</label>
+                                    <label for="grade" class="form-label" id="label_grade_not_inserted" style="color: #c82829;
+                                        display: none">Climbing grades should be inserted</label>
+                                    <input name="4" type="checkbox" class="btn-check" id="btn-4"
+                                           {% if data['checked_grades']['4'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="4" class="btn btn-primary" for="btn-4">4</label>
+                                    <input name="5a" type="checkbox" class="btn-check" id="btn-5a"
+                                           {% if data['checked_grades']['5a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="5a" class="btn btn-primary" for="btn-5a">5a</label>
+                                    <input name="5b" type="checkbox" class="btn-check" id="btn-5b"
+                                           {% if data['checked_grades']['5b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="5b" class="btn btn-primary" for="btn-5b">5b</label>
+                                    <input name="5c" type="checkbox" class="btn-check" id="btn-5c"
+                                           {% if data['checked_grades']['5c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="5c" class="btn btn-primary" for="btn-5c">5c</label>
+                                    <input name="6a" type="checkbox" class="btn-check" id="btn-6a"
+                                           {% if data['checked_grades']['6a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="6a" class="btn btn-primary" for="btn-6a">6a</label>
+                                    <input name="6b" type="checkbox" class="btn-check" id="btn-6b"
+                                           {% if data['checked_grades']['6b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="6b" class="btn btn-primary" for="btn-6b">6b</label>
+                                    <input name="6c" type="checkbox" class="btn-check" id="btn-6c"
+                                           {% if data['checked_grades']['6c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="6c" class="btn btn-primary" for="btn-6c">6c</label>
+
+                                    <input name="7a" type="checkbox" class="btn-check" id="btn-7a"
+                                           {% if data['checked_grades']['7a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="7a" class="btn btn-primary" for="btn-7a">7a</label>
+                                    <input name="7b" type="checkbox" class="btn-check" id="btn-7b"
+                                           {% if data['checked_grades']['7b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="7b" class="btn btn-primary" for="btn-7b">7b</label>
+                                    <input name="7c" type="checkbox" class="btn-check" id="btn-7c"
+                                           {% if data['checked_grades']['7c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="7c" class="btn btn-primary" for="btn-7c">7c</label>
+                                    <input name="8a" type="checkbox" class="btn-check" id="btn-8a"
+                                           {% if data['checked_grades']['8a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="8a" class="btn btn-primary" for="btn-8a">8a</label>
+                                    <input name="8b" type="checkbox" class="btn-check" id="btn-8b"
+                                           {% if data['checked_grades']['8b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="8b" class="btn btn-primary" for="btn-8b">8b</label>
+                                    <input name="8c" type="checkbox" class="btn-check" id="btn-8c"
+                                           {% if data['checked_grades']['8c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="8c" class="btn btn-primary" for="btn-8c">8c</label>
+                                    <input name="9a" type="checkbox" class="btn-check" id="btn-9a"
+                                           {% if data['checked_grades']['9a'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="9a" class="btn btn-primary" for="btn-9a">9a</label>
+                                    <input name="9b" type="checkbox" class="btn-check" id="btn-9b"
+                                           {% if data['checked_grades']['9b'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="9b" class="btn btn-primary" for="btn-9b">9b</label>
+                                    <input name="9c" type="checkbox" class="btn-check" id="btn-9c"
+                                           {% if data['checked_grades']['9c'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="9c" class="btn btn-primary" for="btn-9c">9c</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="discipline" class="form-label" id="label_steepness">Favourite wall steepness</label>
+                                    <input name="slab" type="checkbox" class="btn-check" id="btn-slab"
+                                           {% if data['slab'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="slab" class="btn btn-primary" for="btn-slab"><i class="bi bi-arrow-up-right"></i>Slab</label>
+                                    <input name="vertical" type="checkbox" class="btn-check" id="btn-vertical"
+                                           {% if data['vertical'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="vertical" class="btn btn-primary" for="btn-vertical"><i class="bi bi-arrow-up-short"></i>Vertical</label>
+                                    <input name="overhang" type="checkbox" class="btn-check" id="btn-overhang"
+                                           {% if data['overhang'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="overhang" class="btn btn-primary" for="btn-overhang"><i class="bi bi-arrow-up-left"></i>Overhang</label>
+                                    <input name="roof" type="checkbox" class="btn-check" id="btn-roof"
+                                           {% if data['roof'] == 1 %} checked {% endif %} autocomplete="off">
+                                    <label value="roof" class="btn btn-primary" for="btn-roof"><i class="bi bi-arrow-right-short"></i>Roof</label>
+                                </div>
+                            </div>
+
+                            <div class="left-panel__bottom-ribbon">
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-sm">
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                                              id="btnHome" name='action' value="refresh">Refresh</button>
+                                    </div>
+                                    <div class="col-sm">
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
+                                              id="btnRecommend" name='action' value="recommend">Recommend</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="container-fluid text-center body" id="routes_page">
+
+                    <div class="jumbotron text-center">
+                        <h1>Climbing routes recommender in crag {{ cragName }} </h1>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="full_list">
+                                <table class="table table-responsive-md" id="table_sportclimbing">
+                                    <thead class="thead-dark">
+                                    <tr><th scope="col" colspan="12">Sport Climbing Routes</th></tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for key, values in routes.items() %}
+                                    <tr class="table-primary"><th scope="col" colspan="12">Sector Name: {{values[0].sectorSlug}}</th></tr>
+                                    <tr class="table-active">
+                                        <th scope="col">Name</th>
+                                        <th>Grade</th>
+                                        <th>Perceived Grade</th>
+                                        <th>Climbing style</th>
+                                        <th>Wall steepness</th>
+                                    </tr>
+                                    {% for val in values %}
+                                    <tr class="table-condensed">
+                                        <th scope="col">{{val.zlaggableName}}</th>
+                                        <th>
+                                            {{val.difficulty}}</th>
+                                        <th>
+                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="You will grade the route {{ val.zlaggableName }} as
+                                                  {{ val.grade_dev_name }}
+                                                  {% if val.dev > 0 %}
+                                                       , because other climbers graded this route as
+                                                       {{ val.hard_dev }} level(s) higher
+                                                  {% elif val.dev < 0 %}
+                                                       , because other climbers graded this route as
+                                                       {{ val.soft_dev * (-1) }} level(s) lower
+                                                  {% endif %}
+                                                  ">{{ val.grade_dev_name }}</a>
+
+                                            </span>
+
+                                        </th>
+                                        <th>{{val.style}}</th>
+                                        <th>{{val.steepness}}</th>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endfor %}
+                                    <tbody>
+                                </table>
+                            </div>
+
+                        </div>
 
 
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 </body>
 
 </html>
