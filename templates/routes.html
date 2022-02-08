@@ -210,11 +210,11 @@
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-sm">
-                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
                                               id="btnHome" name='action' value="refresh">Refresh</button>
                                     </div>
                                     <div class="col-sm">
-                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
                                               id="btnRecommend" name='action' value="recommend">Recommend</button>
                                     </div>
                                   </div>
@@ -255,10 +255,10 @@
                                                   {{ val.grade_dev_name }}
                                                   {% if val.dev > 0 %}
                                                        , because other climbers graded this route as
-                                                       {{ val.hard_dev }} level(s) higher
+                                                       {{ '%0.2f'| format(val.hard_dev|float) }} level(s) higher
                                                   {% elif val.dev < 0 %}
                                                        , because other climbers graded this route as
-                                                       {{ val.soft_dev * (-1) }} level(s) lower
+                                                       {{ '%0.2f'| format(val.soft_dev|float) }} level(s) lower
                                                   {% endif %}
                                                   ">{{ val.grade_dev_name }}</a>
 

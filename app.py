@@ -66,7 +66,7 @@ def find_recommendations_for_crags(checked_styles, checked_styles_least, checked
             res_crags[cragSlug] = num_routes_in_crag
     if number_crags == 0:
         flag_cold_start = True
-        # recommend top-10
+        # recommend top-10 visited by the others
         i = 0
         for ind in crags.sort_values(by='routes', ascending=False).index:
             cragSlug = crags.loc[ind, 'cragSlug']
@@ -176,7 +176,8 @@ def root():
             settings_dic = render_refresh_page(user_id, user_data)
             return render_template('index.html',
                                    markers=markers,
-                                   data=settings_dic)
+                                   data=settings_dic,
+                                   explanation_on='off')
 
 
 @application.route('/routes', methods=('GET', 'POST'))
@@ -249,7 +250,9 @@ def login():
                 settings_dic = render_refresh_page(user_id_entered, user_data)
                 return render_template('index.html',
                                        markers=markers,
-                                       data=settings_dic)
+                                       data=settings_dic,
+                                       explanation_on='off'
+                                       )
 
         else:
             error = 'There is no user with this id, or the wrong password. Please try again.'
@@ -273,15 +276,44 @@ def recommended_crags():
             settings_dic = render_refresh_page(user_id_entered, user_data)
             return render_template('index.html',
                                    markers=markers,
-                                   data=settings_dic)
+                                   data=settings_dic,
+                                   explanation_on='off'
+                                   )
     dic_preferences, checked_styles, checked_styles_least, checked_steepness, checked_grades = load_preferences_from_get_request(
         user_id_entered, args)
-    recommended_crags, sorted_list_of_crags, flag_cold_start = find_recommendations_for_crags(checked_styles,
-                                                                                              checked_styles_least,
-                                                                                              checked_steepness,
-                                                                                              checked_grades,
-                                                                                              dic_preferences[
-                                                                                                  'type_recommendation'])
+    recommended_crags, sorted_list_of_crags, flag_cold_start = find_recommendations_for_crags(
+        checked_styles,
+        checked_styles_least,
+        checked_steepness,
+        checked_grades,
+        dic_preferences['type_recommendation']
+    )
+    # explanation generation
+    if flag_cold_start:
+        explanation_sentence = 'We didn`t find recommendations for you based on the preferences, '
+        explanation_sentence += 'but you might be interested to visit the most popular crags'
+    else:
+        if dic_preferences['type_recommendation'] == 'training':
+            explanation_sentence = 'For your training, we recommend you the crags having climbing routes of '
+        else:
+            explanation_sentence = 'For your favourite climbing style, we recommend you the crags having climbing routes of '
+        # begin explanation sentence
+        if len(checked_grades) > 0:
+            for each_grade in checked_grades:
+                explanation_sentence += each_grade + ', '
+            explanation_sentence = explanation_sentence[:-2] + ' grade/s, '
+        if len(checked_styles) > 0:
+            for each_style in checked_styles:
+                explanation_sentence += each_style + ', '
+            explanation_sentence = explanation_sentence[:-2] + ' style/s, '
+        if len(checked_steepness) > 0:
+            explanation_sentence += ' and '
+            for each_steepness in checked_steepness:
+                explanation_sentence += each_steepness + ', '
+            explanation_sentence = explanation_sentence[:-2] + ' steepness/es, '
+        if (len(checked_grades) > 0) or (len(checked_styles) > 0) or (len(checked_steepness) > 0):
+            explanation_sentence = explanation_sentence[:-2]
+    # end explanation sentence
     max_routes_num = recommended_crags[sorted_list_of_crags[0]]
 
     markers_recommended = []
@@ -304,7 +336,9 @@ def recommended_crags():
                            recommended_crags=sorted_list_of_crags,
                            crags_with_routes=recommended_crags,
                            data=dic_preferences,
-                           cold_start=flag_cold_start
+                           cold_start=flag_cold_start,
+                           explanation_on='on',
+                           explanation_sentence=explanation_sentence
                            )
 
 

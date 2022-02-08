@@ -147,7 +147,7 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 6b+,19,2236,finale-ampola,Finale Ampola,2230,0,0,0,1,0,0,1,0,0,0,settore-a,el-galinazo,0.524,cruxy,0.5414585414585414,vertical,El Galinazo,19.0,0.0,0.0,1.0,6b+,0.0,0.0,0.0
 5c,14,2237,finale-ampola,Finale Ampola,2230,0,0,0,1,0,0,1,0,0,0,settore-a,gran-diedro,0.524,cruxy,0.5414585414585414,vertical,Gran Diedro,14.0,0.0,0.0,1.0,5c,0.0,0.0,0.0
 6c,21,2238,finale-ampola,Finale Ampola,2234,0,0,0,1,0,0,1,0,1,0,unknown-sector-79fea,n-n,1.0,cruxy,0.5,"overhang, vertical",N.N.,21.0,0.0,0.0,1.0,6c,0.0,0.0,0.0
-6c,21,2239,finale-ampola,Finale Ampola,2230,0,0,0,1,0,0,1,0,0,0,settore-a,vacca-di-dio,0.524,cruxy,0.5414585414585414,vertical,vacca di dio,,,,,,,,
+6c,21,2239,finale-ampola,Finale Ampola,2230,0,0,0,1,0,0,1,0,0,0,settore-a,vacca-di-dio,0.524,cruxy,0.5414585414585414,vertical,vacca di dio,21.0,0.0,0.0,0.0,6c,0.0,0.0,0.0
 7b,25,2240,finale-ampola,Finale Ampola,2230,0,0,0,1,0,0,0,0,0,1,settore-a,ciccio-pasticcio,0.833,cruxy,0.667,roof,Ciccio Pasticcio,24.0,4.0,0.0,10.0,7a+,-1.0,0.4,0.0
 6c,21,2241,finale-ampola,Finale Ampola,2230,0,0,0,1,0,0,1,0,0,0,settore-a,sesso-orale,0.4995004995004994,cruxy,0.8,vertical,Sesso Orale,20.0,2.0,0.0,10.0,6b+,-1.0,0.2,0.0
 6a+,17,2242,finale-ampola,Finale Ampola,2230,0,0,1,0,0,1,1,1,0,0,settore-a,yellowstone,0.5,"crimpy, technical",0.5,"slab, vertical",Yellowstone,17.0,0.0,0.0,8.0,6a+,0.0,0.0,0.0
@@ -553,7 +553,7 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 6a+,17,7497,herr-wall-–-la-calchera,Herr Wall – La Calchera,7485,0,0,0,1,0,0,1,0,0,0,herr-wall-–-la-calchera,perche-no,0.4615384615384615,cruxy,1.0,vertical,Perche no ,17.0,0.0,0.0,1.0,6a+,0.0,0.0,0.0
 7a+,24,7498,herr-wall-–-la-calchera,Herr Wall – La Calchera,7485,0,0,0,1,0,0,1,0,0,0,herr-wall-–-la-calchera,ce-ma-non-si-vede,0.4615384615384615,cruxy,1.0,vertical,C'e ma non si vede,24.0,0.0,0.0,1.0,7a+,0.0,0.0,0.0
 7c+,28,7499,herr-wall-–-la-calchera,Herr Wall – La Calchera,7485,0,0,1,0,0,1,1,0,0,0,herr-wall-–-la-calchera,la-calchera,0.5,"crimpy, technical",1.0,vertical,La calchera ,28.0,0.0,0.0,1.0,7c+,0.0,0.0,0.0
-7a,23,7500,foppiano,Foppiano,7500,0,0,0,0,0,0,0,0,0,0,unknown-sector,domonera-stand,0.0, ,0.0, ,Domonera stand,,,,,,,,
+7a,23,7500,foppiano,Foppiano,7500,0,0,0,0,0,0,0,0,0,0,unknown-sector,domonera-stand,0.0, ,0.0, ,Domonera stand,23.0,0.0,0.0,0.0,7a,0.0,0.0,0.0
 5c,14,7633,le-piazzole,Le Piazzole,7633,0,0,0,1,0,0,1,0,0,0,settore-a,lultima,0.2702702702702703,cruxy,0.615,vertical,L'Ultima,14.0,0.0,0.0,4.0,5c,0.0,0.0,0.0
 5c,14,7634,le-piazzole,Le Piazzole,7633,0,0,0,1,0,0,1,1,0,0,settore-a,equilibrio,0.2702702702702703,cruxy,0.5,"slab, vertical",Equilibrio,14.0,0.0,0.0,5.0,5c,0.0,0.0,0.0
 6b,18,7635,le-piazzole,Le Piazzole,7635,0,0,0,1,0,0,1,0,0,0,unknown-sector,it,0.2702702702702703,cruxy,0.615,vertical,IT,18.0,0.0,0.0,1.0,6b,0.0,0.0,0.0
@@ -750,7 +750,7 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 8b,31,10145,tassilandia,Tassilandia,10145,0,0,0,0,0,1,1,0,0,0,bellavista,mosca-cieca,0.818,technical,0.733,vertical,Mosca Cieca,31.0,0.0,0.0,1.0,8b,0.0,0.0,0.0
 6a,16,10146,tassilandia,Tassilandia,10138,0,1,1,0,0,1,1,0,0,0,panta-rei,paperinik,0.3333333333333333,"endurance, crimpy, technical",0.857,vertical,Paperinik,16.0,0.0,0.0,1.0,6a,0.0,0.0,0.0
 7c,27,10147,tassilandia,Tassilandia,10135,0,0,0,0,0,1,1,0,0,0,unknown-sector-ad022,test-emozionante,1.0,technical,1.0,vertical,test emozionante,27.0,0.0,0.0,1.0,7c,0.0,0.0,0.0
-7c,27,10148,tassilandia,Tassilandia,10135,0,0,0,0,0,1,1,0,0,0,unknown-sector-ad022,nel-grigio,1.0,technical,1.0,vertical,Nel Grigio,,,,,,,,
+7c,27,10148,tassilandia,Tassilandia,10135,0,0,0,0,0,1,1,0,0,0,unknown-sector-ad022,nel-grigio,1.0,technical,1.0,vertical,Nel Grigio,27.0,0.0,0.0,0.0,7c,0.0,0.0,0.0
 6c,21,10149,tassilandia,Tassilandia,10135,0,0,0,0,0,1,1,0,0,0,unknown-sector-ad022,dallalbero,1.0,technical,1.0,vertical,Dall'albero,21.0,0.0,0.0,3.0,6c,0.0,0.0,0.0
 6b,18,10150,tassilandia,Tassilandia,10138,0,1,1,0,0,1,1,0,0,0,panta-rei,frizzina,0.3333333333333333,"endurance, crimpy, technical",0.857,vertical,Frizzina,19.0,0.0,1.0,3.0,6b+,1.0,0.0,0.3333333333333333
 7b,25,10151,tassilandia,Tassilandia,10145,0,0,0,0,0,1,1,0,0,0,bellavista,sputadoghi,0.818,technical,0.733,vertical,Sputadoghi,26.0,0.0,1.0,4.0,7b+,1.0,0.0,0.25
@@ -1438,7 +1438,7 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 7a+,24,12438,ceniga,Ceniga,12434,0,0,1,0,0,0,1,0,0,0,unknown-sector,pioggia-di-coralli,0.45,crimpy,1.0,vertical,Pioggia di coralli,24.0,0.0,0.0,1.0,7a+,0.0,0.0,0.0
 7c,27,12439,ceniga,Ceniga,12434,0,0,1,1,0,1,1,0,0,0,unknown-sector,tiranno-sauro-flex,0.3333333333333333,"crimpy, cruxy, technical",1.0,vertical,Tiranno sauro flex,28.0,0.0,1.0,2.0,7c+,1.0,0.0,0.5
 7b,25,12440,ceniga,Ceniga,12437,0,0,1,0,0,0,1,0,0,0,ceniga,dasy-lou,0.33333333333333337,crimpy,0.5710000000000001,vertical,Dasy Lou,25.0,0.0,0.0,1.0,7b,0.0,0.0,0.0
-7a,23,12441,ceniga,Ceniga,12434,0,0,1,0,0,0,1,0,0,0,unknown-sector,rock-mississipi-blues,0.45,crimpy,1.0,vertical,Rock Mississipi Blues,,,,,,,,
+7a,23,12441,ceniga,Ceniga,12434,0,0,1,0,0,0,1,0,0,0,unknown-sector,rock-mississipi-blues,0.45,crimpy,1.0,vertical,Rock Mississipi Blues,23.0,0.0,0.0,0.0,7a,0.0,0.0,0.0
 7b,25,12442,ceniga,Ceniga,12434,0,0,1,0,0,1,1,0,0,0,unknown-sector,bushido,0.3636363636363637,"crimpy, technical",1.0,vertical,Bushido,25.0,3.0,0.0,25.0,7b,0.0,0.12,0.0
 7a,23,12443,ceniga,Ceniga,12434,0,0,1,0,0,0,1,0,0,0,unknown-sector,il-guercio,1.0,crimpy,1.0,vertical,Il guercio,23.0,2.0,0.0,18.0,7a,0.0,0.1111111111111111,0.0
 7a+,24,12444,ceniga,Ceniga,12434,0,0,1,0,0,0,1,0,0,0,unknown-sector,anarkos,0.6,crimpy,1.0,vertical,Anarkos,23.0,4.0,1.0,12.0,7a,-1.0,0.3333333333333333,0.08333333333333333
@@ -1490,7 +1490,7 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 6b,18,13885,al-pra,Al Prà,13877,0,0,0,1,0,0,1,0,0,0,settore-a,blob,1.0,cruxy,1.0,vertical,Blob,18.0,0.0,0.0,1.0,6b,0.0,0.0,0.0
 6b,18,13886,al-pra,Al Prà,13877,0,0,0,1,0,0,1,0,0,0,settore-a,spigolandia,1.0,cruxy,1.0,vertical,Spigolandia,18.0,0.0,0.0,1.0,6b,0.0,0.0,0.0
 7a+,24,13887,al-pra,Al Prà,13877,0,0,0,1,0,0,1,0,0,0,settore-a,naryka-2nd-pitch,1.0,cruxy,1.0,vertical,Naryka 2nd pitch,24.0,0.0,0.0,1.0,7a+,0.0,0.0,0.0
-6b,18,13888,al-pra,Al Prà,13877,0,0,0,1,0,0,1,0,0,0,settore-a,cercenal-fuism,1.0,cruxy,1.0,vertical,Cercenal,,,,,,,,
+6b,18,13888,al-pra,Al Prà,13877,0,0,0,1,0,0,1,0,0,0,settore-a,cercenal-fuism,1.0,cruxy,1.0,vertical,Cercenal,18.0,0.0,0.0,0.0,6b,0.0,0.0,0.0
 7b,25,14991,la-panoramica,La Panoramica,14991,0,0,1,0,0,0,1,0,0,0,unknown-sector,unknown-route,0.4285714285714286,crimpy,1.0,vertical,N.N.,25.0,0.0,0.0,1.0,7b,0.0,0.0,0.0
 6a+,17,14992,la-panoramica,La Panoramica,14992,0,1,0,0,0,0,1,0,0,0,la-panoramica,eposimetro,0.3,endurance,0.7690000000000001,vertical,Eposimetro,17.0,0.0,0.0,1.0,6a+,0.0,0.0,0.0
 7a,23,14993,la-panoramica,La Panoramica,14992,0,1,1,1,0,0,1,0,0,0,la-panoramica,zoom,0.2857142857142857,"endurance, crimpy, cruxy",0.6663336663336663,vertical,Zoom,23.0,0.0,5.0,52.0,7a,0.0,0.0,0.09615384615384616
@@ -1771,8 +1771,8 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 3b,4,18448,val-lomasone,Val Lomasone,18342,0,0,0,0,0,1,0,1,0,0,roccia-dei-folletti,baffardello,0.4615384615384615,technical,0.519,slab,Baffardello,4.0,0.0,0.0,1.0,3,0.0,0.0,0.0
 4b,7,18449,val-lomasone,Val Lomasone,18342,0,0,0,0,0,1,0,1,0,0,roccia-dei-folletti,via-del-camoscio,0.4615384615384615,technical,0.519,slab,Via del camoscio,7.0,0.0,0.0,1.0,4,0.0,0.0,0.0
 8a,29,18450,val-lomasone,Val Lomasone,18335,0,0,0,0,0,1,1,0,0,0,settore-b,memorie-alcoholiche,0.429,technical,0.4615384615384616,vertical,Memorie alcoliche,30.0,0.0,1.0,1.0,8a+,1.0,0.0,1.0
-7c+,28,18451,val-lomasone,Val Lomasone,18333,0,0,0,0,0,1,1,0,0,0,nuova,cacciatore-di-sogni,0.39,technical,0.5,vertical,Cacciatore di sogni,,,,,,,,
-7c,27,18452,val-lomasone,Val Lomasone,18350,0,1,1,1,0,0,1,0,0,0,new,la-mar,0.3333333333333333,"endurance, crimpy, cruxy",1.0,vertical,La mar,,,,,,,,
+7c+,28,18451,val-lomasone,Val Lomasone,18333,0,0,0,0,0,1,1,0,0,0,nuova,cacciatore-di-sogni,0.39,technical,0.5,vertical,Cacciatore di sogni,28.0,0.0,0.0,0.0,7c+,0.0,0.0,0.0
+7c,27,18452,val-lomasone,Val Lomasone,18350,0,1,1,1,0,0,1,0,0,0,new,la-mar,0.3333333333333333,"endurance, crimpy, cruxy",1.0,vertical,La mar,27.0,0.0,0.0,0.0,7c,0.0,0.0,0.0
 6c+,22,19467,monte-terlago-b7f4c-verrev,Monte Terlago,19467,0,0,0,0,0,1,0,0,0,1,unknown-sector-4d1d5,odore-die-banana,0.5710000000000001,technical,0.4,roof,Odore die Banana,22.0,0.0,0.0,2.0,6c+,0.0,0.0,0.0
 7c,27,19468,monte-terlago-b7f4c-verrev,Monte Terlago,19468,0,0,0,0,0,1,0,0,0,1,monte-terlago,macchia-dolio-e-mangianza-plus,0.5710000000000001,technical,0.4,roof,Macchia d'Olio e Mangianza Plus,27.0,0.0,0.0,1.0,7c,0.0,0.0,0.0
 7a+,24,19469,monte-terlago-b7f4c-verrev,Monte Terlago,19467,0,0,0,0,0,1,0,0,0,1,unknown-sector-4d1d5,macchia-d-olio-e-mangianza,0.5710000000000001,technical,0.4,roof,Macchia d' olio e Mangianza,24.0,0.0,0.0,1.0,7a+,0.0,0.0,0.0
@@ -2022,8 +2022,8 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 7a+,24,20851,la-gola,La Gola,20741,0,0,0,1,0,0,1,0,0,0,guard-rail,lische-di-banana,1.0,cruxy,0.8128128128128128,vertical,Lische di Banana,24.0,9.0,1.0,55.0,7a+,0.0,0.16363636363636364,0.01818181818181818
 6b+,19,20852,la-gola,La Gola,20712,0,0,0,0,0,1,0,1,0,0,unknown-sector-01e2d,diedro-senza-nome,0.387,technical,0.5,slab,Diedro senza nome,18.0,1.0,0.0,1.0,6b,-1.0,1.0,0.0
 6a,16,20853,la-gola,La Gola,20712,0,0,0,0,0,1,0,1,0,0,unknown-sector-01e2d,nova-da-zecca,0.387,technical,0.5,slab,Nova da zecca,16.0,0.0,0.0,1.0,6a,0.0,0.0,0.0
-7a,23,20854,la-gola,La Gola,20712,0,0,0,0,0,1,0,1,0,0,unknown-sector-01e2d,gin-club,0.387,technical,0.5,slab,Gin club,,,,,,,,
-7a,23,20855,la-gola,La Gola,20741,0,0,0,0,0,1,1,0,0,0,guard-rail,n-n-kz8k5,0.28600000000000003,technical,0.8128128128128128,vertical,N.N.,,,,,,,,
+7a,23,20854,la-gola,La Gola,20712,0,0,0,0,0,1,0,1,0,0,unknown-sector-01e2d,gin-club,0.387,technical,0.5,slab,Gin club,23.0,0.0,0.0,0.0,7a,0.0,0.0,0.0
+7a,23,20855,la-gola,La Gola,20741,0,0,0,0,0,1,1,0,0,0,guard-rail,n-n-kz8k5,0.28600000000000003,technical,0.8128128128128128,vertical,N.N.,23.0,0.0,0.0,0.0,7a,0.0,0.0,0.0
 6b+,19,20856,la-gola,La Gola,20712,0,0,0,0,0,1,0,1,0,0,unknown-sector-01e2d,forestclub,0.387,technical,0.5,slab,Forestclub,19.0,0.0,0.0,1.0,6b+,0.0,0.0,0.0
 7b,25,20857,la-gola,La Gola,20739,0,1,0,0,0,0,0,0,1,0,la-casa-del-piacere,night-club,0.3823823823823824,endurance,0.767,overhang,Night Club,25.0,0.0,0.0,1.0,7b,0.0,0.0,0.0
 7a,23,20858,la-gola,La Gola,20741,0,0,0,0,0,1,1,0,0,0,guard-rail,26-n-n,0.28600000000000003,technical,0.8128128128128128,vertical,26. N. N.,23.0,0.0,0.0,1.0,7a,0.0,0.0,0.0
@@ -3179,7 +3179,7 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 6b+,19,29093,passo-san-giovanni,Passo San Giovanni,29058,1,0,1,0,1,1,1,0,1,0,unknown-sector-98466,ohne-name,0.25,"athletic, crimpy, sloper, technical",0.5,"overhang, vertical",N.N.,19.0,0.0,0.0,4.0,6b+,0.0,0.0,0.0
 6c+,22,29094,passo-san-giovanni,Passo San Giovanni,29062,0,0,1,0,0,0,0,1,0,0,settore-d,bucefalomania,1.0,crimpy,0.5710000000000001,slab,Bucefalomania,23.0,0.0,1.0,3.0,7a,1.0,0.0,0.3333333333333333
 6b+,19,29095,passo-san-giovanni,Passo San Giovanni,29061,0,0,1,0,0,0,0,1,0,0,settore-b,sogni-di-robot,0.4,crimpy,1.0,slab,Sogni di Robot,19.0,0.0,0.0,3.0,6b+,0.0,0.0,0.0
-5b,12,29206,mandrea,Mandrea,29206,0,0,0,1,0,0,0,0,1,0,mandrea,black-hole,0.5,cruxy,0.6,overhang,Black Hole,,,,,,,,
+5b,12,29206,mandrea,Mandrea,29206,0,0,0,1,0,0,0,0,1,0,mandrea,black-hole,0.5,cruxy,0.6,overhang,Black Hole,12.0,0.0,0.0,0.0,5b,0.0,0.0,0.0
 6b+,19,29207,mandrea,Mandrea,29207,1,1,1,1,0,1,1,0,1,0,unknown-sector,sudomagodo-l7,0.2,"athletic, endurance, crimpy, cruxy, technical",0.5,"overhang, vertical","Sudomagodo, L7",19.0,0.0,0.0,1.0,6b+,0.0,0.0,0.0
 7a,23,29208,mandrea,Mandrea,29207,1,1,1,1,0,1,1,0,1,0,unknown-sector,sudomagodo-l8,0.2,"athletic, endurance, crimpy, cruxy, technical",0.5,"overhang, vertical","Sudomagodo, L8",23.0,0.0,0.0,1.0,7a,0.0,0.0,0.0
 6b,18,29209,mandrea,Mandrea,29207,1,1,1,1,0,1,1,0,1,0,unknown-sector,sudomagodo-l10,0.2,"athletic, endurance, crimpy, cruxy, technical",0.5,"overhang, vertical","Sudomagodo, L10",18.0,0.0,0.0,1.0,6b,0.0,0.0,0.0
@@ -3942,8 +3942,8 @@ difficulty,gradeIndex,route_id,cragSlug,cragName,sector_id,athletic,endurance,cr
 6a,16,35180,san-paolo,San Paolo,35168,0,0,0,0,0,1,0,1,0,0,settore-a,tenax,0.467,technical,1.0,slab,Tenax,16.0,0.0,0.0,1.0,6a,0.0,0.0,0.0
 6a,16,35181,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,variante-concordia,0.467,technical,0.389,vertical,Variante Concordia,15.0,1.0,0.0,1.0,5c+,-1.0,1.0,0.0
 6c,21,35182,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,without-name,0.467,technical,0.389,vertical,N.N.,21.0,0.0,0.0,1.0,6c,0.0,0.0,0.0
-6c+,22,35183,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,via-roberto,0.467,technical,0.389,vertical,Via Roberto,,,,,,,,
-6c+,22,35184,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,der-weg-durch-das-gesicht,0.467,technical,0.389,vertical,Der Weg durch das Gesicht,,,,,,,,
+6c+,22,35183,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,via-roberto,0.467,technical,0.389,vertical,Via Roberto,22.0,0.0,0.0,0.0,6c+,0.0,0.0,0.0
+6c+,22,35184,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,der-weg-durch-das-gesicht,0.467,technical,0.389,vertical,Der Weg durch das Gesicht,22.0,0.0,0.0,0.0,6c+,0.0,0.0,0.0
 6a+,17,35185,san-paolo,San Paolo,35168,0,0,0,0,0,1,0,1,0,0,settore-a,il-secondo-speccio,0.467,technical,1.0,slab,Il Secondo Specchio,17.0,0.0,1.0,5.0,6a+,0.0,0.0,0.2
 6a,16,35186,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,aganippe,0.467,technical,0.389,vertical,Aganippe,16.0,0.0,0.0,3.0,6a,0.0,0.0,0.0
 6b,18,35187,san-paolo,San Paolo,35165,0,0,0,0,0,1,1,0,0,0,unknown-sector,obelix-l1,0.467,technical,0.389,vertical,Obelix L1,19.0,0.0,2.0,3.0,6b+,1.0,0.0,0.6666666666666666

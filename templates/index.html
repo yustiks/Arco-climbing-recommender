@@ -37,11 +37,26 @@
 
 <body>
     <div id="map" class="sidebar-map"></div>
+    {% if explanation_on=='on' %}
     <div id="explanation">
         <div class="explanation_text">
-            The explanation text will be posted here.
+            {% if explanation_sentence|length > 261 %}
+                <script>document.getElementById('explanation').style.height = '220px';</script>
+            {% elif explanation_sentence|length > 226 %}
+                <script>document.getElementById('explanation').style.height = '200px';</script>
+            {% elif explanation_sentence|length > 192 %}
+                <script>document.getElementById('explanation').style.height = '180px';</script>
+            {% elif explanation_sentence|length > 162 %}
+                <script>document.getElementById('explanation').style.height = '160px';</script>
+            {% elif explanation_sentence|length > 127 %}
+                <script>document.getElementById('explanation').style.height = '140px';</script>
+            {% else %}
+                <script>document.getElementById('explanation').style.height = '120px';</script>
+            {% endif %}
+            {{ explanation_sentence }}
         </div>
     </div>
+    {% endif %}
 
     <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
 
@@ -53,7 +68,7 @@
         <div class="leaflet-sidebar-tabs">
             <ul role="tablist"> <!-- top aligned tabs -->
                 <li class="active"><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#routes_list" role="tab"><i class="fa fa-bars"></i></a></li>
             </ul>
 
         </div>
@@ -64,7 +79,7 @@
             <!-- Profile -->
             <div class="leaflet-sidebar-pane active" id="profile">
                 <h1 class="leaflet-sidebar-header">
-                    Pereferences
+                    Preferences
                     <div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div>
                 </h1>
                     <div class="container">
@@ -215,11 +230,11 @@
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-sm">
-                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
                                               id="btnHome" name='action' value="refresh">Refresh</button>
                                     </div>
                                     <div class="col-sm">
-                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
+                                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
                                               id="btnRecommend" name='action' value="recommend">Recommend</button>
                                     </div>
                                   </div>
@@ -230,7 +245,7 @@
             </div>
             <!-- End profile -->
             <!-- List of routes -->
-            <div class="leaflet-sidebar-pane" id="home">
+            <div class="leaflet-sidebar-pane" id="routes_list">
                 <h1 class="leaflet-sidebar-header">
                     List of crags
                     <div class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></div>
@@ -247,6 +262,7 @@
                     {% endif %}
                     </div>
             </div>
+            <!-- End list of routes -->
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/universal.js') }}"/>
