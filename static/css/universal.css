@@ -24,7 +24,7 @@ html, body, #map {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     top: 20px;
-    left: 50%;
+    left: 460px;
     width: 300px;
     height: 180px;
     z-index: 1000;
@@ -44,7 +44,27 @@ html, body, #map {
 }
 
 .btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
+    color: white;
+    background-color: green;
+    border-color: black;
+}
+
+
+.btn-primary {
     color: black;
-    background-color: darkgoldenrod;
-    border-color: saddlebrown;
+    background-color: rgb(214, 214, 214);
+    border-color: white;
+}
+
+
+.btn-primary:hover {
+    color: white;
+    background-color: green;
+    border-color: black;
+}
+
+.form-label {
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-bottom: .5rem;
 }

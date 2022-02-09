@@ -357,7 +357,7 @@
                         <p class="card-text">Number routes: {{ marker['routes'] }}</p>
                         <p class="card-text">Number of ascents: {{ marker['ascents'] }}</p>
                         {% if cold_start == False %}
-                        <p class="card-text">Recommended routes: {{ marker['recommended_routes'] }}</p>
+                        <p class="card-text">Number of recommended routes: {{ marker['recommended_routes'] }}</p>
                         {% endif %}
                         <form method="get" action="routes" class="inline">
                           <input type="hidden" name="cragSlug" value="{{ marker['cragSlug'] }}">
