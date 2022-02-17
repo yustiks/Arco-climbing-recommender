@@ -24,7 +24,7 @@ html, body, #map {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     top: 20px;
-    left: 460px;
+    left: 10%;
     width: 300px;
     height: 180px;
     z-index: 1000;

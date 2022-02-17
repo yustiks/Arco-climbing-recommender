@@ -63,7 +63,7 @@
     <script src="{{ url_for('static', filename='js/leaflet-sidebar.js') }}"></script>
 
 
-    <div id="sidebar" class="leaflet-sidebar">
+    <div id="sidebar" class="leaflet-sidebar {% if crags_recommendation=='on' %} collapsed {% endif %} ">
         <!-- Nav tabs -->
         <div class="leaflet-sidebar-tabs">
             <ul role="tablist"> <!-- top aligned tabs -->
@@ -244,7 +244,7 @@
                     </div>
             </div>
             <!-- End profile -->
-            <!-- List of routes -->
+            <!-- List of crags -->
             <div class="leaflet-sidebar-pane" id="routes_list">
                 <h1 class="leaflet-sidebar-header">
                     List of crags
@@ -262,7 +262,7 @@
                     {% endif %}
                     </div>
             </div>
-            <!-- End list of routes -->
+            <!-- End list of crags -->
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/universal.js') }}"/>
