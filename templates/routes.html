@@ -85,27 +85,45 @@
 
                                     <input name="athletic" type="checkbox" class="btn-check" id="btn-athletic"
                                             {% if data['athletic'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="athletic" class="btn btn-primary" for="btn-athletic">Athletic</label>
+                                    <label value="athletic" class="btn btn-primary" for="btn-athletic"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Athletic is a climbing style which requires powerful, physical climbing">
+                                        Athletic</label>
 
                                     <input name="cruxy" type="checkbox" class="btn-check" id="btn-cruxy"
                                            {% if data['cruxy'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="cruxy" class="btn btn-primary" for="btn-cruxy">Cruxy</label>
+                                    <label value="cruxy" class="btn btn-primary" for="btn-cruxy"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Cruxy is a climbing style showing that the climbing route with a short, particularly difficult, section">
+                                        Cruxy</label>
 
                                     <input name="endurance" type="checkbox" class="btn-check" id="btn-endurance"
                                            {% if data['endurance'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="endurance" class="btn btn-primary" for="btn-endurance">Endurance</label>
+                                    <label value="endurance" class="btn btn-primary" for="btn-endurance"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Endurance is a climbing style, which requires endurance (ability to climb for a long duration)">
+                                        Endurance</label>
 
                                     <input name="crimpy" type="checkbox" class="btn-check" id="btn-crimpy"
                                            {% if data['crimpy'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="crimpy" class="btn btn-primary" for="btn-crimpy">Crimpy</label>
+                                    <label value="crimpy" class="btn btn-primary" for="btn-crimpy"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Crimpy is a climbing style where the holds (in the difficult part) are predominantly crimps, which requires strong climbers' fingers">
+                                        Crimpy</label>
 
                                     <input name="sloper" type="checkbox" class="btn-check" id="btn-sloper"
                                            {% if data['sloper'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="sloper" class="btn btn-primary" for="btn-sloper">Sloper</label>
+                                    <label value="sloper" class="btn btn-primary" for="btn-sloper"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Sloper is a climbing style where the holds (in the difficult part) are predominantly slopers (or big holds), when accurate moves are required">
+                                        Sloper</label>
 
                                     <input name="technical" type="checkbox" class="btn-check" id="btn-technical"
                                            {% if data['technical'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="technical" class="btn btn-primary" for="btn-technical">Technical</label>
+                                    <label value="technical" class="btn btn-primary" for="btn-technical"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Technical is a climbing style showing balancy, or has small footholds, or requires other 'technique' - overall the climb cannot be done with power alone">
+                                        Technical</label>
 
                                 </div>
                                 <div class="mb-3">
@@ -113,27 +131,45 @@
 
                                     <input name="athletic_least" type="checkbox" class="btn-check" id="btn-least-athletic"
                                            {% if data['athletic_least'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="athletic_least" class="btn btn-primary" for="btn-least-athletic">Athletic</label>
+                                    <label value="athletic_least" class="btn btn-primary" for="btn-least-athletic"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Athletic is a climbing style which requires powerful, physical climbing">
+                                        Athletic</label>
 
                                     <input name="cruxy_least" type="checkbox" class="btn-check" id="btn-least-cruxy"
                                            {% if data['cruxy_least'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="cruxy_least" class="btn btn-primary" for="btn-least-cruxy">Cruxy</label>
+                                    <label value="cruxy_least" class="btn btn-primary" for="btn-least-cruxy"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Cruxy is a climbing style showing that the climbing route with a short, particularly difficult, section">
+                                        Cruxy</label>
 
                                     <input name="endurance_least" type="checkbox" class="btn-check" id="btn-least-endurance"
                                            {% if data['endurance_least'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="endurance_least" class="btn btn-primary" for="btn-least-endurance">Endurance</label>
+                                    <label value="endurance_least" class="btn btn-primary" for="btn-least-endurance"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Endurance is a climbing style, which requires endurance (ability to climb for a long duration)">
+                                        Endurance</label>
 
                                     <input name="crimpy_least" type="checkbox" class="btn-check" id="btn-least-crimpy"
                                            {% if data['crimpy_least'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="crimpy_least" class="btn btn-primary" for="btn-least-crimpy">Crimpy</label>
+                                    <label value="crimpy_least" class="btn btn-primary" for="btn-least-crimpy"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Crimpy is a climbing style where the holds (in the difficult part) are predominantly crimps, which requires strong climbers' fingers">
+                                        Crimpy</label>
 
                                     <input name="sloper_least" type="checkbox" class="btn-check" id="btn-least-sloper"
                                            {% if data['sloper_least'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="sloper_least" class="btn btn-primary" for="btn-least-sloper">Sloper</label>
+                                    <label value="sloper_least" class="btn btn-primary" for="btn-least-sloper"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Sloper is a climbing style where the holds (in the difficult part) are predominantly slopers (or big holds), when accurate moves are required">
+                                        Sloper</label>
 
                                     <input name="technical_least" type="checkbox" class="btn-check" id="btn-least-technical"
                                            {% if data['technical_least'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="technical_least" class="btn btn-primary" for="btn-least-technical">Technical</label>
+                                    <label value="technical_least" class="btn btn-primary" for="btn-least-technical"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Technical is a climbing style showing balancy, or has small footholds, or requires other 'technique' - overall the climb cannot be done with power alone">
+                                        Technical</label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="grade" class="form-label" id="label_grade">Climbing grades</label>
@@ -193,16 +229,28 @@
                                     <label for="discipline" class="form-label" id="label_steepness">Favourite wall steepness</label>
                                     <input name="slab" type="checkbox" class="btn-check" id="btn-slab"
                                            {% if data['slab'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="slab" class="btn btn-primary" for="btn-slab"><i class="bi bi-arrow-up-right"></i>Slab</label>
+                                    <label value="slab" class="btn btn-primary" for="btn-slab"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Slab is a wall steepness, when the angle of the wall is less than 88 degrees">
+                                        <i class="bi bi-arrow-up-right"></i>Slab</label>
                                     <input name="vertical" type="checkbox" class="btn-check" id="btn-vertical"
                                            {% if data['vertical'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="vertical" class="btn btn-primary" for="btn-vertical"><i class="bi bi-arrow-up-short"></i>Vertical</label>
+                                    <label value="vertical" class="btn btn-primary" for="btn-vertical"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Vertical is a wall steepness, when the angle of the wall is between 88 and 95 degrees">
+                                        <i class="bi bi-arrow-up-short"></i>Vertical</label>
                                     <input name="overhang" type="checkbox" class="btn-check" id="btn-overhang"
                                            {% if data['overhang'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="overhang" class="btn btn-primary" for="btn-overhang"><i class="bi bi-arrow-up-left"></i>Overhang</label>
+                                    <label value="overhang" class="btn btn-primary" for="btn-overhang"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Overhang is a wall steepness, when the angle of the wall is between 95 and 165 degrees">
+                                        <i class="bi bi-arrow-up-left"></i>Overhang</label>
                                     <input name="roof" type="checkbox" class="btn-check" id="btn-roof"
                                            {% if data['roof'] == 1 %} checked {% endif %} autocomplete="off">
-                                    <label value="roof" class="btn btn-primary" for="btn-roof"><i class="bi bi-arrow-right-short"></i>Roof</label>
+                                    <label value="roof" class="btn btn-primary" for="btn-roof"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="Roof is a wall steepness, when the angle of the wall is more than 165 degrees">
+                                        <i class="bi bi-arrow-right-short"></i>Roof</label>
                                 </div>
                             </div>
 
