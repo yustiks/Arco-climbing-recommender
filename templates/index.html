@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crags recommender</title>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='leaflet.css') }}">
+    <script src="{{url_for('static', filename='leaflet.js')}}"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"></script>
+    <style>
+        html, body {
+            height: 100% !important;
+        }
+
+        .left-panel {
+            display: block;
+            position: relative;
+            float: left;
+            height: 100%;
+            min-width: 19em;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .left-panel__form {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .left-panel__form_scroll-area {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 5em;
+            padding: 1rem;
+            overflow: auto;
+        }
+
+        .left-panel__bottom-ribbon {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: #fff;
+        }
+
+        .left-panel__bottom-ribbon__button {
+            display: block;
+            position: relative;
+            margin: auto;
+        }
+
+        .map {
+            position: relative;
+            height: 100%
+        }
+
+        a.btn-primary {
+            color: #fff !important;
+        }
+
+        #explanation {
+            position: absolute;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            top: 20px;
+            left: 350px;
+            width: 300px;
+            height: 120px;
+            z-index: 1000;
+            border: solid 5px #aaaaaa;
+            box-shadow: 0 0 10px #4d4d4c;
+            background-color: #aaaaaa;
+            background-size: auto;
+            padding: 5px 5px 5px 15px;
+            display: none;
+        }
+
+        .explanation_text {
+            margin: 5px 5px 5px 5px;
+            margin-block: 5px 5px;
+        }
+    </style>
+
+    <!-- Yandex.Metrika counter -->
+        <script type="text/javascript" >
+           (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+           m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+           (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+           ym(86551327, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true,
+                ecommerce:"dataLayer"
+           });
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/86551327" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<div class="left-panel ">
+    <div class="container">
+        <form class="left-panel__form" id="form" method="get" action="recommended_crags">
+            <div class="left-panel__form_scroll-area">
+                <div class="mb-3">
+                    User id: {{ user_id }}
+                </div>
+                <div hidden="True" class="mb-3">
+                    <label hidden="True" for="user_id" class="form-label" id="label_user_id">User id</label>
+                    <label hidden="True" for="user_id" class="form-label" id="label_user_id_not_inserted" style="color: #c82829;
+                        display: none">User id should be inserted</label>
+                    <input readonly name="user_id" type="text" class="form-control" id="user" placeholder="Enter user id" value="{{ user_id }}">
+                </div>
+                <div class="mb-3">
+                    <label for="type_recommendation" class="form-label" id="label_type_recommendation">
+                        Recommendation type</label>
+                    <label for="type_recommendation" class="form-label" id="label_type_recommendation_not_inserted"
+                           style="color: #c82829; display: none">Recommendation type should be inserted</label>
+                    <select name="type_recommendation" class="form-control" id="type_recommendation">
+                        <option value="favourite" selected>Favourite moves</option>
+                        <option value="training">Training</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <p class="fs-5">Your preferences:</p>
+                </div>
+                <div hidden='True' class="mb-3">
+                    <label for="discipline" class="form-label" id="label_discipline">Climbing discipline</label>
+                    <label for="discipline" class="form-label" id="label_discipline_not_inserted" style="color: #c82829;
+                        display: none">Climbing discipline should be inserted</label>
+                    <select name="discipline" class="form-control" id="discipline">
+                        <option value="sport" selected>Sport climbing</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" id="label_style">Favourite climbing styles</label>
+                    <label class="form-label" id="label_style_not_inserted" style="color: #c82829;
+                        display: none">Favourite climbing styles should be inserted</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_athletic"
+                        {% if fav_style // 100000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_athletic">Athletic</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_cruxy"
+                      {% if fav_style // 10000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_cruxy">Cruxy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_endurance"
+                      {% if fav_style // 1000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_endurance">Endurance</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_crimpy"
+                      {% if fav_style // 100 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_crimpy">Crimpy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_sloper"
+                      {% if fav_style // 10 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_sloper">Sloper</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_technical"
+                       {% if fav_style % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_technical">Technical</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="least_style" class="form-label" id="label_least_style">Least used climbing style</label>
+                    <label for="least_style" class="form-label" id="label_least_style_not_inserted" style="color: #c82829;
+                        display: none">Least used climbing styles should be inserted</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_least_athletic"
+                      {% if least_fav_style // 100000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_least_athletic">Athletic</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_least_cruxy"
+                             {% if least_fav_style // 10000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_least_cruxy">Cruxy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_least_endurance"
+                             {% if least_fav_style // 1000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_least_endurance">Endurance</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_least_crimpy"
+                             {% if least_fav_style // 100 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_least_crimpy">Crimpy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_least_sloper"
+                             {% if least_fav_style // 10 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_least_sloper">Sloper</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_least_technical"
+                             {% if least_fav_style % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_least_technical">Technical</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="grade" class="form-label" id="label_grade">Climbing grades</label>
+                    <label for="grade" class="form-label" id="label_grade_not_inserted" style="color: #c82829;
+                        display: none">Climbing grades should be inserted</label>
+                    <select name="grade" class="form-control" id="grade">
+                        <option value="">Not selected</option>
+                        <option value="4" {% if fav_grade == '4' %} selected {% endif %}>from 4a to 4c</option>
+                        <option value="5a" {% if fav_grade == '5a' %} selected {% endif %}>From 5a to 5a+</option>
+                        <option value="5b" {% if fav_grade == '5b' %} selected {% endif %}>From 5b to 5b+</option>
+                        <option value="5c" {% if fav_grade == '5c' %} selected {% endif %}>From 5c to 5c+</option>
+                        <option value="6a" {% if fav_grade == '6a' %} selected {% endif %}>From 6a to 6a+</option>
+                        <option value="6b" {% if fav_grade == '6b' %} selected {% endif %}>From 6b to 6b+</option>
+                        <option value="6c" {% if fav_grade == '6c' %} selected {% endif %}>From 6c to 6c+</option>
+                        <option value="7a" {% if fav_grade == '7a' %} selected {% endif %}>From 7a to 7a+</option>
+                        <option value="7b" {% if fav_grade == '7b' %} selected {% endif %}>From 7b to 7b+</option>
+                        <option value="7c" {% if fav_grade == '7c' %} selected {% endif %}>From 7c to 7c+</option>
+                        <option value="8a" {% if fav_grade == '8a' %} selected {% endif %}>From 8a to 8a+</option>
+                        <option value="8b" {% if fav_grade == '8b' %} selected {% endif %}>From 8b to 8b+</option>
+                        <option value="8c" {% if fav_grade == '8c' %} selected {% endif %}>From 8c to 8c+</option>
+                        <option value="9a" {% if fav_grade == '9a' %} selected {% endif %}>From 9a to 9a+</option>
+                        <option value="9b" {% if fav_grade == '9b' %} selected {% endif %}>From 9b to 9b+</option>
+                        <option value="9c" {% if fav_grade == '9c' %} selected {% endif %}>From 9c to 9c+</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="discipline" class="form-label" id="label_steepness">Favourite wall steepness</label>
+                    <label for="discipline" class="form-label" id="label_steepness_not_inserted" style="color: #c82829;
+                        display: none">Wall steepness should be inserted</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_slab"
+                      {% if fav_steepness % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_slab">Slab</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_vertical"
+                       {% if fav_steepness // 1000 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_vertical">Vertical</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_overhang"
+                            {% if fav_steepness // 100 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_overhang">Overhang</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="check_roof"
+                      {% if fav_steepness // 10 % 10 == 1 %} checked {%endif%}>
+                      <label class="form-check-label" for="check_roof">Roof</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="left-panel__bottom-ribbon">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                              id="btnHome" name='action' value="home">Refresh</button>
+                    </div>
+                    <div class="col-sm">
+                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
+                              id="btnRecommend" name='action' value="recommend">Recommend</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="map" class="map"></div>
+<div id="explanation">
+    <div class="explanation_text">
+        The explanation text will be posted here.
+    </div>
+</div>
+
+<script>
+    (function () {
+        function render(crags, layerGroup) {
+            const greenIcon = new L.Icon({
+                iconUrl: '{{url_for('static', filename='images/marker-icon-2x-grey.png')}}',
+                shadowUrl: '{{url_for('static', filename='images/marker-shadow.png')}}',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            const redIcon = new L.Icon({
+                iconUrl: '{{url_for('static', filename='images/marker-icon-2x-green.png')}}',
+                shadowUrl: '{{url_for('static', filename='images/marker-shadow.png')}}',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+            const circleOptions = {
+                color: 'green',
+                fillColor: 'green',
+                fillOpacity: 0.5,
+                radius: 700
+            };
+
+            layerGroup.clearLayers();
+            let num_recommended_crags = 0;
+            let discipline, grade, athletic, cruxy, endurance, crimpy, sloper, technical, vertical, overhang, roof;
+            let slab, type_recommendation;
+            let least_athletic, least_cruxy, least_endurance, least_crimpy, least_sloper, least_technical;
+            let explanation_text, recommended_style, user_id;
+            user_id = document.getElementById('form').elements['user_id'].value;
+            discipline = document.getElementById('form').elements['discipline'].value;
+            grade = document.getElementById('form').elements['grade'].value;
+            athletic = document.getElementById('form').elements['check_athletic'].checked;
+            cruxy = document.getElementById('form').elements['check_cruxy'].checked;
+            endurance = document.getElementById('form').elements['check_endurance'].checked;
+            crimpy = document.getElementById('form').elements['check_crimpy'].checked;
+            sloper = document.getElementById('form').elements['check_sloper'].checked;
+            technical = document.getElementById('form').elements['check_technical'].checked;
+
+            least_athletic = document.getElementById('form').elements['check_least_athletic'].checked;
+            least_cruxy = document.getElementById('form').elements['check_least_cruxy'].checked;
+            least_endurance = document.getElementById('form').elements['check_least_endurance'].checked;
+            least_crimpy = document.getElementById('form').elements['check_least_crimpy'].checked;
+            least_sloper = document.getElementById('form').elements['check_least_sloper'].checked;
+            least_technical = document.getElementById('form').elements['check_least_technical'].checked;
+
+            vertical = document.getElementById('form').elements['check_vertical'].checked;
+            overhang = document.getElementById('form').elements['check_overhang'].checked;
+            roof = document.getElementById('form').elements['check_roof'].checked;
+            slab = document.getElementById('form').elements['check_slab'].checked;
+            type_recommendation = document.getElementById('form').elements['type_recommendation'].value;
+
+            for (let i in crags) {
+                const {cragName, cragSlug, latitude, longitude, isRecommended} = crags[i];
+                const cragName_ = cragName.charAt(0).toUpperCase() + cragName.slice(1);
+                pop_action = 'routes';
+                if (cragSlug == 'massone') {
+                    pop_action = 'massone';
+                }
+                const location = [latitude, longitude];
+                let marker;
+                if (isRecommended) {
+                    num_recommended_crags += 1;
+                    marker = L.marker(location, {icon: redIcon});
+                    marker.addTo(layerGroup);
+                    const circle = L.circle(location, circleOptions);
+                    circle.addTo(layerGroup);
+
+                } else {
+                    marker = L.marker(location, {icon: greenIcon});
+                    marker.addTo(layerGroup);
+                }
+
+                const popup = `
+                    <div class="card" style="width: 18rem;">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                        <h5 class="card-title">${cragName_}</h5>
+                        <p class="card-text">Location: ${latitude}, ${longitude}</p>
+                        <p class="card-text">${cragSlug}</p>
+                        <form method="get" action="${pop_action}" class="inline">
+                          <input type="hidden" name="cragSlug" value="${cragSlug}">
+                          <input type="hidden" name="cragName" value="${cragName_}">
+                          <input type="hidden" name="athletic" value="${athletic}">
+                          <input type="hidden" name="cruxy" value="${cruxy}">
+                          <input type="hidden" name="endurance" value="${endurance}">
+                          <input type="hidden" name="crimpy" value="${crimpy}">
+                          <input type="hidden" name="sloper" value="${sloper}">
+                          <input type="hidden" name="technical" value="${technical}">
+                          <input type="hidden" name="least_athletic" value="${least_athletic}">
+                          <input type="hidden" name="least_cruxy" value="${least_cruxy}">
+                          <input type="hidden" name="least_endurance" value="${least_endurance}">
+                          <input type="hidden" name="least_crimpy" value="${least_crimpy}">
+                          <input type="hidden" name="least_sloper" value="${least_sloper}">
+                          <input type="hidden" name="least_technical" value="${least_technical}">
+                          <input type="hidden" name="vertical" value="${vertical}">
+                          <input type="hidden" name="overhang" value="${overhang}">
+                          <input type="hidden" name="roof" value="${roof}">
+                          <input type="hidden" name="slab" value="${slab}">
+                          <input type="hidden" name="discipline" value="${discipline}">
+                          <input type="hidden" name="grade" value="${grade}">
+                          <input type="hidden" name="type_recommendation" value="${type_recommendation}">
+                          <input type="hidden" name="user_id" value="${user_id}">
+                          <button type="submit" name="submit_param" value="submit_value" class="btn btn-primary">
+                            Check the crag
+                          </button>
+                        </form>
+                    </div>
+                        `;
+                marker.bindPopup(popup);
+            }
+
+            if (num_recommended_crags > 0) {
+                document.getElementById('explanation').style.display = 'block';
+                let discipline_string = 'bouldering';
+                if (discipline === 'sport') {
+                    discipline_string = 'sport single pitches';
+                }
+
+                let style_string = '';
+                if (athletic) {
+                    style_string += 'athletic ';
+                }
+                if (cruxy) {
+                    style_string += 'cruxy ';
+                }
+                if (endurance) {
+                    style_string += 'endurance ';
+                }
+                if (crimpy) {
+                    style_string += 'crimpy ';
+                }
+                if (sloper) {
+                    style_string += 'sloper ';
+                }
+                if (technical) {
+                    style_string += 'technical ';
+                }
+
+                let least_style_string = '';
+                if (least_athletic) {
+                    least_style_string += 'athletic ';
+                }
+                if (least_cruxy) {
+                    least_style_string += 'cruxy ';
+                }
+                if (least_endurance) {
+                    least_style_string += 'endurance ';
+                }
+                if (least_crimpy) {
+                    least_style_string += 'crimpy ';
+                }
+                if (least_sloper) {
+                    least_style_string += 'sloper ';
+                }
+                if (least_technical) {
+                    least_style_string += 'technical ';
+                }
+
+                let steepness_string = '';
+                if (vertical) {
+                    steepness_string += 'vertical ';
+                }
+                if (overhang) {
+                    steepness_string += 'overhang ';
+                }
+                if (roof) {
+                    steepness_string += 'roof ';
+                }
+                if (slab) {
+                    steepness_string += 'slab ';
+                }
+                let grade_string = document.getElementById('form').elements['grade'].value;
+                steepness_string = steepness_string.substr(0, steepness_string.length-1);
+
+                if (type_recommendation === 'training') {
+                    explanation_text = 'For your training, we recommend you to visit crags with climbing routes of ';
+                    recommended_style = least_style_string;
+                    explanation_text +=  grade_string + ' grades, and ' + recommended_style + ' style';
+                } else if (type_recommendation === 'favourite') {
+                    explanation_text = 'For your favourite type of climbing routes of ';
+                    recommended_style = style_string;
+                    explanation_text += grade_string + ' grades ' + recommended_style +
+                        ' style ' + steepness_string + ', '+ 'we recommend you to visit crags with similar routes';
+                }
+                document.getElementById("explanation").innerHTML = explanation_text;
+                if (explanation_text.length> 133)
+                document.getElementById('explanation').style.height = '140px';
+            } else {
+                document.getElementById('explanation').style.display = '120px'
+            }
+
+        }
+
+        function refresh(layerGroup, options) {
+            let url = '/recommended_crags';
+            let character_entered = [];
+            let all_checked_fields = ['discipline', 'style', 'least_style', 'steepness', 'grade', 'type_recommendation'];
+            if (options) {
+                url += '?';
+                const {discipline, fav_style, least_style,
+                    fav_steepness, grade, type_recommendation, user_id} = options;
+                if (user_id) {
+                    url += `user_id=${user_id}&`;
+                    character_entered.push('user_id');
+                }
+                if (discipline) {
+                    url += `discipline=${discipline}&`;
+                    character_entered.push('discipline');
+                }
+                if (fav_style) {
+                    url += `style=${fav_style}&`;
+                    character_entered.push('style');
+                }
+                if (least_style) {
+                    url += `least_style=${least_style}&`;
+                    character_entered.push('least_style');
+                }
+                if (fav_steepness) {
+                    url += `steepness=${fav_steepness}&`;
+                    character_entered.push('steepness');
+                }
+                if (grade) {
+                    url += `grade=${grade}&`;
+                    character_entered.push('grade');
+                }
+                if (type_recommendation) {
+                    url += `type_recommendation=${type_recommendation}&`;
+                    character_entered.push('type_recommendation');
+                }
+                let num_fields_entered = 0;
+                let elements_to_show = [];
+                for (const element of all_checked_fields) {
+                    if (character_entered.includes(element)) {
+                        num_fields_entered += 1;
+                    } else {
+                        elements_to_show.push(element);
+                    }
+                }
+
+                if (num_fields_entered < all_checked_fields.length) {
+                    for (const element of elements_to_show) {
+                        document.getElementById('label_'+element).style.display = 'none';
+                        document.getElementById('label_'+element+'_not_inserted').style.display = 'block';
+                        //TODO: change the explanation sentence
+                        document.getElementById("explanation").innerHTML = 'Enter all the preferences';
+                    }
+                }
+                else {
+                    for (const element of character_entered) {
+                        document.getElementById('label_'+element).style.display = 'block';
+                        document.getElementById('label_'+element+'_not_inserted').style.display = 'none';
+                    }
+                }
+
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(({items}) => render(items, layerGroup));
+        }
+
+        const map = L.map('map').setView([45.96802, 10.91427], 11);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const layerGroup = L.layerGroup().addTo(map);
+
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+
+        const btnHome = document.getElementById('btnHome');
+
+        btnHome.addEventListener('click', () => {
+            document.getElementById('explanation').style.display = 'none';
+            refresh(layerGroup);
+        });
+
+        const btnRecommend = document.getElementById('btnRecommend');
+
+        btnRecommend.addEventListener('click', () => {
+
+            // const user = form.elements['user'].value;
+            const discipline = form.elements['discipline'].value;
+            // sending information about picked favourite preferences
+            let fav_style = 0;
+            if (document.getElementById('form').elements['check_athletic'].checked) {
+                fav_style += 100000;
+            }
+            if (document.getElementById('form').elements['check_cruxy'].checked) {
+                fav_style += 10000;
+            }
+            if (document.getElementById('form').elements['check_endurance'].checked) {
+                fav_style += 1000;
+            }
+            if (document.getElementById('form').elements['check_crimpy'].checked) {
+                fav_style += 100;
+            }
+            if (document.getElementById('form').elements['check_sloper'].checked) {
+                fav_style += 10;
+            }
+            if (document.getElementById('form').elements['check_technical'].checked) {
+                fav_style += 1;
+            }
+            // sending information about picked least favourite preferences
+            let least_style = 0;
+            if (document.getElementById('form').elements['check_least_athletic'].checked) {
+                least_style += 100000;
+            }
+            if (document.getElementById('form').elements['check_least_cruxy'].checked) {
+                least_style += 10000;
+            }
+            if (document.getElementById('form').elements['check_least_endurance'].checked) {
+                least_style += 1000;
+            }
+            if (document.getElementById('form').elements['check_least_crimpy'].checked) {
+                least_style += 100;
+            }
+            if (document.getElementById('form').elements['check_least_sloper'].checked) {
+                least_style += 10;
+            }
+            if (document.getElementById('form').elements['check_least_technical'].checked) {
+                least_style += 1;
+            }
+            let fav_steepness = 0;
+            if (document.getElementById('form').elements['check_vertical'].checked) {
+                fav_steepness += 1000;
+            }
+            if (document.getElementById('form').elements['check_overhang'].checked) {
+                fav_steepness += 100;
+            }
+            if (document.getElementById('form').elements['check_roof'].checked) {
+                fav_steepness += 10;
+            }
+            if (document.getElementById('form').elements['check_slab'].checked) {
+                fav_steepness += 1;
+            }
+
+            const grade = form.elements['grade'].value;
+            const type_recommendation = form.elements['type_recommendation'].value;
+            const user_id = form.elements['user_id'].value;
+
+            const options = {discipline, fav_style, least_style,
+                fav_steepness, grade, type_recommendation, user_id};
+
+            refresh(layerGroup, options);
+        });
+
+        refresh(layerGroup);
+    })();
+</script>
+
+
+</body>
+</html>

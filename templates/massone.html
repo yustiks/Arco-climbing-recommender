@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sector Massone</title>
+
+    <style>
+        html, body {
+            height: 100% !important;
+        }
+
+        .left-panel {
+            display: block;
+            position: absolute;
+            float: left;
+            height: 100%;
+            min-width: 19em;
+            background: #fff;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .left-panel__form {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .left-panel__form_scroll-area {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 5em;
+            padding: 1rem;
+            overflow: auto;
+        }
+
+        .left-panel__bottom-ribbon {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: #fff;
+        }
+
+        .left-panel__bottom-ribbon__button {
+            display: block;
+            position: relative;
+            margin: auto;
+        }
+
+        .body_table {
+            position: relative;
+            height: 100%;
+            background-color: #ABBAEA;
+        }
+
+        .jumbotron {
+            background-color: #ABBAEA;
+            color: #0a0e14;
+            margin-left: 281px;
+        }
+        .table-condensed{
+            font-size: 12px;
+            background-color: #ffffff;
+        }
+
+    </style>
+    <script type="text/javascript">
+        function load_recommended_cookies() {
+            var data = JSON.parse('{{ data | tojson | safe }}');
+            if (data['cstyles'].indexOf('athletic') >= 0) {
+                document.getElementById('form').elements['check_athletic'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_athletic'].checked = false;
+            }
+            if (data['cstyles'].indexOf('cruxy') >= 0) {
+                document.getElementById('form').elements['check_cruxy'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_cruxy'].checked = false;
+            }
+            if (data['cstyles'].indexOf('endurance') >= 0) {
+                document.getElementById('form').elements['check_endurance'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_endurance'].checked = false;
+            }
+            if (data['cstyles'].indexOf('crimpy') >= 0) {
+                document.getElementById('form').elements['check_crimpy'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_crimpy'].checked = false;
+            }
+            if (data['cstyles'].indexOf('sloper') >= 0) {
+                document.getElementById('form').elements['check_sloper'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_sloper'].checked = false;
+            }
+            if (data['cstyles'].indexOf('technical') >= 0) {
+                document.getElementById('form').elements['check_technical'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_technical'].checked = false;
+            }
+
+            if (data['least_styles'].indexOf('athletic') >= 0) {
+                document.getElementById('form').elements['check_least_athletic'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_least_athletic'].checked = false;
+            }
+            if (data['least_styles'].indexOf('cruxy') >= 0) {
+                document.getElementById('form').elements['check_least_cruxy'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_least_cruxy'].checked = false;
+            }
+            if (data['least_styles'].indexOf('endurance') >= 0) {
+                document.getElementById('form').elements['check_least_endurance'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_least_endurance'].checked = false;
+            }
+            if (data['least_styles'].indexOf('crimpy') >= 0) {
+                document.getElementById('form').elements['check_least_crimpy'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_least_crimpy'].checked = false;
+            }
+            if (data['least_styles'].indexOf('sloper') >= 0) {
+                document.getElementById('form').elements['check_least_sloper'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_least_sloper'].checked = false;
+            }
+            if (data['least_styles'].indexOf('technical') >= 0) {
+                document.getElementById('form').elements['check_least_technical'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_least_technical'].checked = false;
+            }
+
+            if (data['steepnesses'].indexOf('vertical') >= 0) {
+                document.getElementById('form').elements['check_vertical'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_vertical'].checked = false;
+            }
+            if (data['steepnesses'].indexOf('overhang') >= 0) {
+                document.getElementById('form').elements['check_overhang'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_overhang'].checked = false;
+            }
+            if (data['steepnesses'].indexOf('roof') >= 0) {
+                document.getElementById('form').elements['check_roof'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_roof'].checked = false;
+            }
+            if (data['steepnesses'].indexOf('slab') >= 0) {
+                document.getElementById('form').elements['check_slab'].checked = true;
+            } else {
+                document.getElementById('form').elements['check_slab'].checked = false;
+            }
+            if (data['grade'].length > 0) {
+                document.getElementById('form').elements['grade'].value = data['grade'];
+            }
+            if (data['discipline'].length > 0) {
+                document.getElementById('form').elements['discipline'].value = data['discipline'];
+            }
+            if (data['type_recommendation'].length > 0) {
+                document.getElementById('form').elements['type_recommendation'].value = data['type_recommendation']
+            }
+        }
+        window.onload = load_recommended_cookies;
+    </script>
+    <!-- Yandex.Metrika counter -->
+        <script type="text/javascript" >
+           (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+           m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+           (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+           ym(86551327, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true,
+                ecommerce:"dataLayer"
+           });
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/86551327" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                crossorigin="anonymous"></script>
+
+<div class="left-panel ">
+    <div class="container">
+        <form class="left-panel__form" id="form" method="post" action="massone">
+            <input type="hidden" name="cragSlug" value="{{data.cragSlug}}">
+            <input type="hidden" name="cragName" value="{{data.cragName}}">
+            <div class="left-panel__form_scroll-area">
+                <div class="mb-3">
+                    User id: {{ user_id }}
+                </div>
+                <div hidden="True" class="mb-3">
+                    <label hidden="True" for="user_id" class="form-label" id="label_user_id">User id</label>
+                    <label hidden="True" for="user_id" class="form-label" id="label_user_id_not_inserted" style="color: #c82829;
+                        display: none">User id should be inserted</label>
+                    <input readonly name="user_id" type="text" class="form-control" id="user" placeholder="Enter user id" value="{{ user_id }}">
+                </div>
+                <div class="mb-3">
+                    <label for="type_recommendation" class="form-label" id="label_type_recommendation">
+                        Recommendation type</label>
+                    <label for="type_recommendation" class="form-label" id="label_type_recommendation_not_inserted"
+                           style="color: #c82829; display: none">Recommendation type should be inserted</label>
+                    <select name="type_recommendation" class="form-control" id="type_recommendation">
+                        <option value="favourite" selected>Favourite moves</option>
+                        <option value="training">Training</option>
+                        <option value="motivation">Motivation</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <p class="fs-5">Your preferences:</p>
+                </div>
+                <div hidden='True' class="mb-3">
+                    <label for="discipline" class="form-label">Climbing discipline</label>
+                    <select name="discipline" class="form-control" id="discipline">
+                        <option value="sport" selected>Sport climbing</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" id="label_style">Favourite climbing styles</label>
+                    <label class="form-label" id="label_style_not_inserted" style="color: #c82829;
+                        display: none">Favourite climbing styles should be inserted</label>
+                    <div class="form-check form-switch">
+                        <input name="cstyle" value="athletic" class="form-check-input" type="checkbox" id="check_athletic">
+                        <label class="form-check-label" for="check_athletic">Athletic</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="cstyle" value="cruxy" class="form-check-input" type="checkbox" id="check_cruxy" checked>
+                        <label class="form-check-label" for="check_cruxy">Cruxy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="cstyle" value="endurance" class="form-check-input" type="checkbox" id="check_endurance">
+                        <label class="form-check-label" for="check_endurance">Endurance</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="cstyle" value="crimpy" class="form-check-input" type="checkbox" id="check_crimpy">
+                        <label class="form-check-label" for="check_crimpy">Crimpy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="cstyle" value="sloper" class="form-check-input" type="checkbox" id="check_sloper">
+                        <label class="form-check-label" for="check_sloper">Sloper</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="cstyle" value="technical" class="form-check-input" type="checkbox" id="check_technical">
+                        <label class="form-check-label" for="check_technical">Technical</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" id="label_least_style">Least used climbing styles</label>
+                    <label class="form-label" id="label_least_style_not_inserted" style="color: #c82829;
+                        display: none">Least used climbing styles should be inserted</label>
+                    <div class="form-check form-switch">
+                        <input name="least_style" value="athletic" class="form-check-input" type="checkbox" id="check_least_athletic">
+                        <label class="form-check-label" for="check_least_athletic">Athletic</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="least_style" value="cruxy" class="form-check-input" type="checkbox" id="check_least_cruxy">
+                        <label class="form-check-label" for="check_least_cruxy">Cruxy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="least_style" value="endurance" class="form-check-input" type="checkbox" id="check_least_endurance">
+                        <label class="form-check-label" for="check_least_endurance">Endurance</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="least_style" value="crimpy" class="form-check-input" type="checkbox" id="check_least_crimpy">
+                        <label class="form-check-label" for="check_least_crimpy">Crimpy</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="least_style" value="sloper" class="form-check-input" type="checkbox" id="check_least_sloper">
+                        <label class="form-check-label" for="check_least_sloper">Sloper</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="least_style" value="technical" class="form-check-input" type="checkbox" id="check_least_technical">
+                        <label class="form-check-label" for="check_least_technical">Technical</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="grade" class="form-label" id="label_grade">Climbing grades</label>
+                    <label for="grade" class="form-label" id="label_grade_not_inserted" style="color: #c82829;
+                        display: none">Climbing grades should be inserted</label>
+                    <select name="grade" class="form-control" id="grade">
+                        <option value="">Not selected</option>
+                        <option value="4" {% if grade == '4' %} selected {% endif %}>from 4a to 4c</option>
+                        <option value="5a" {% if grade == '5a' %} selected {% endif %}>From 5a to 5a+</option>
+                        <option value="5b" {% if grade == '5b' %} selected {% endif %}>From 5b to 5b+</option>
+                        <option value="5c" {% if grade == '5c' %} selected {% endif %}>From 5c to 5c+</option>
+                        <option value="6a" {% if grade == '6a' %} selected {% endif %}>From 6a to 6a+</option>
+                        <option value="6b" {% if grade == '6b' %} selected {% endif %}>From 6b to 6b+</option>
+                        <option value="6c" {% if grade == '6c' %} selected {% endif %}>From 6c to 6c+</option>
+                        <option value="7a" {% if grade == '7a' %} selected {% endif %}>From 7a to 7a+</option>
+                        <option value="7b" {% if grade == '7b' %} selected {% endif %}>From 7b to 7b+</option>
+                        <option value="7c" {% if grade == '7c' %} selected {% endif %}>From 7c to 7c+</option>
+                        <option value="8a" {% if grade == '8a' %} selected {% endif %}>From 8a to 8a+</option>
+                        <option value="8b" {% if grade == '8b' %} selected {% endif %}>From 8b to 8b+</option>
+                        <option value="8c" {% if grade == '8c' %} selected {% endif %}>From 8c to 8c+</option>
+                        <option value="9a" {% if grade == '9a' %} selected {% endif %}>From 9a to 9a+</option>
+                        <option value="9b" {% if grade == '9b' %} selected {% endif %}>From 9b to 9b+</option>
+                        <option value="9c" {% if grade == '9c' %} selected {% endif %}>From 9c to 9c+</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" id="label_steepness">Wall steepness</label>
+                    <label class="form-label" id="label_steepness_not_inserted" style="color: #c82829;
+                        display: none">Wall steepness should be inserted</label>
+                    <div class="form-check form-switch">
+                        <input name="steepness" value="slab" class="form-check-input" type="checkbox" id="check_slab">
+                        <label class="form-check-label" for="check_slab">Slab</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="steepness" value="vertical" class="form-check-input" type="checkbox" id="check_vertical" checked>
+                        <label class="form-check-label" for="check_vertical">Vertical</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="steepness" value="overhang" class="form-check-input" type="checkbox" id="check_overhang">
+                        <label class="form-check-label" for="check_overhang">Overhang</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input name="steepness" value="roof" class="form-check-input" type="checkbox" id="check_roof">
+                        <label class="form-check-label" for="check_roof">Roof</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="left-panel__bottom-ribbon">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-success"
+                              id="btnHome" name='action' value="home">Refresh</button>
+                    </div>
+                    <div class="col-sm">
+                      <button type="submit" class="left-panel__bottom-ribbon__button btn btn-danger"
+                              id="btnRecommend" name='action' value="recommend">Recommend</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid text-center body_table">
+    <div class="jumbotron text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+                <h1>Schema for sectors location</h1>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+              <img src="{{url_for('static', filename='Massone/schema.png')}}" class="img-fluid" alt="...">
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+                <h1>Schema sector B, left</h1>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+              <img src="{{url_for('static', filename='Massone/sector_B_1.PNG')}}" class="img-fluid" alt="...">
+            </div>
+            <div class="col">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+              <h1>Climbing routes in Sector B left, Massone</h1>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+              <!--TODO create table-->
+            </div>
+            <div class="col">
+            </div>
+          </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="full_list">
+                <table class="table table-responsive-md" id="table_sportclimbing">
+                    <thead class="thead-dark">
+                    <tr><th scope="col" colspan="12">Sport Climbing Routes</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-primary"><th scope="col" colspan="12">Sector Name: </th></tr>
+                    <tr class="table-active">
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th>Grade</th>
+                        <th>Perceived grade</th>
+                        <th>Climbing style</th>
+                        <th>Wall steepness</th>
+                    </tr>
+                    {% for key, val in data.sportclimbing.items() %}
+                    <tr class="table-condensed">
+                        <th scope="col">{{ key }}</th>
+                        <th scope="col">{{ val.name }}</th>
+                        <th>
+                            {{ val.difficulty }}
+                        </th>
+                        <th>
+                            <span class="d-inline-block"
+                                  tabindex="0" data-bs-toggle="popover"
+                                  data-bs-trigger="hover focus"
+                                  data-bs-placement="top"
+                                  data-bs-content="You will grade the route {{ val.name }} as
+                                  {{ val.perceived_grade }}
+                                  {% if val.mean_deviation_new > 0 %}
+                                       , because other climbers graded this route as
+                                       {{ val.mean_deviation }} level(s) higher
+                                  {% elif val.mean_deviation_new < 0 %}
+                                       , because other climbers graded this route as
+                                       {{ val.mean_deviation * (-1) }} level(s) lower
+                                  {% endif %}
+                                  ">
+                              <button class="btn btn-xs" type="button" disabled>{{ val.perceived_grade }}</button>
+                            </span>
+                        </th>
+                        <th>{{ val.style }}</th>
+                        <th>{{ val.steepness }}</th>
+                    </tr>
+                    {% endfor %}
+                    <tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+          return new bootstrap.Popover(popoverTriggerEl)
+        })
+    </script>
+
+<div id="myModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Error message</h5>
+        <button type="button" class="btn-close close_modal" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          {% autoescape false %}
+            <p>{{ data.error_message }}</p>
+          {% endautoescape %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close_modal" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% if data.error_flag %}
+<script>
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+  keyboard: true,
+  backdrop: true
+});
+myModal.show();
+$(".close_modal").on('click', function (){
+    myModal.hide()
+});
+</script>
+{% endif %}
+
+</body>
+</html>

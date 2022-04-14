@@ -1,0 +1,45 @@
+id,name,difficulty,grade,grading_system,length,sector_id,topo_num,created_at,zlaggableName,overhang,vertical,slab,roof,athletic,endurance,crimpy,cruxy,technical,sloper,style,steepness,zlaggable_id,mean_deviation,num_grade,perceived_grade,mean_deviation_new,perceived_grade_num
+159253,Carlotta,6b+,vl-19,french,20,5289,1,2020-01-17 14:09:23,carlotta,0,0,0,0,0,0,0,0,0,0, , ,159253,0.0,19,6b+,0.0,19.0
+84590,Tivoli,6b,vl-18,french,25,5289,2,2017-06-08 09:43:19,tivoli,0,1,0,0,0,0,0,0,0,0, ,vertical,84590,0.33,18,6b,0.0,18.0
+84591,Fra Fra,6b,vl-18,french,20,5289,3,2017-06-08 09:43:19,fra fra,1,4,3,0,1,2,1,0,3,0,"athletic, endurance, crimpy, technical","overhang, vertical, slab",84591,0.0,18,6b,0.0,18.0
+84592,Für eine Hand,6a+,vl-17,french,18,5289,4,2017-06-08 09:43:19,für eine hand,0,0,0,0,0,0,0,0,0,0, , ,84592,1.33,17,6b,1.0,18.0
+84593,Dottor Plantier,6a,vl-16,french,15,5289,5,2017-06-08 09:43:20,dottor plantier,0,0,0,0,0,0,0,0,0,0, , ,84593,1.33,16,6a+,1.0,17.0
+84594,Zlù,6a,vl-16,french,20,5289,6,2017-06-08 09:43:20,zlù,1,2,1,0,2,0,0,0,1,0,"athletic, technical","overhang, vertical, slab",84594,0.0,16,6a,0.0,16.0
+84595,Nino,6a,vl-16,french,20,5289,7,2017-06-08 09:43:20,nino,0,0,0,0,0,0,0,0,0,0, , ,84595,1.0,16,6a+,1.0,17.0
+84596,Tangram,6a+,vl-17,french,22,5289,8,2017-06-08 09:43:20,tangram,0,0,0,0,0,0,0,0,0,0, , ,84596,1.0,17,6b,1.0,18.0
+84597,La bamba,7a+,vl-24,french,10,5289,9,2017-06-08 09:43:20,la bamba,0,0,0,0,0,0,0,1,0,0,cruxy, ,84597,0.0,24,7a+,0.0,24.0
+84598,The Mirror,6c,vl-21,french,20,5289,10,2017-06-08 09:43:20,the mirror,0,0,0,0,0,0,0,0,0,0, , ,84598,2.0,21,7a,2.0,23.0
+84599,Spectrum,6b+,vl-19,french,20,5289,11,2017-06-08 09:43:20,spectrum,0,0,0,0,0,0,0,0,0,0, , ,84599,2.0,19,6c,2.0,21.0
+84600,Red Point,7a+,vl-24,french,20,5289,12,2017-06-08 09:43:20,red point,1,0,0,0,1,1,0,1,0,0,"athletic, endurance, cruxy",overhang,84600,1.0,24,7b,1.0,25.0
+84601,Mirta del Pineto,7a+,vl-24,french,20,5289,13,2017-06-08 09:43:21,mirta del pineto,0,0,0,0,0,0,0,0,0,0, , ,84601,0.0,24,7a+,0.0,24.0
+84602,Marsabit,7c,vl-27,french,15,5289,14,2017-06-08 09:43:21,marsabit,0,0,0,0,0,0,0,0,0,0, , ,84602,0.0,27,7c,0.0,27.0
+84603,Stressami,7c,vl-27,french,15,5289,15,2017-06-08 09:43:21,stressami,0,0,0,0,0,0,0,0,0,0, , ,84603,0.0,27,7c,0.0,27.0
+84604,Desirée,7b,vl-25,french,15,5289,16,2017-06-08 09:43:21,desirée,2,0,0,0,2,1,0,0,0,0,"athletic, endurance",overhang,84604,0.0,25,7b,0.0,25.0
+84605,Loacher,7b+,vl-26,french,15,5289,17,2017-06-08 09:43:21,loacher,5,3,0,0,3,6,0,2,0,0,"athletic, endurance, cruxy","overhang, vertical",84605,-1.0,26,7b,-1.0,25.0
+84606,Not Normal,7a+,vl-24,french,15,5289,18,2017-06-08 09:43:21,not normal,6,0,0,0,2,3,1,1,0,0,"athletic, endurance, crimpy, cruxy",overhang,84606,-1.0,24,7a,-1.0,23.0
+84607,Vite Minori,6c,vl-21,french,25,5289,19,2017-06-08 09:43:21,vite minori,0,0,0,0,0,0,0,0,0,0, , ,84607,-2.0,21,6b+,-2.0,19.0
+84608,Let Me Life,7b,vl-25,french,23,5289,20,2017-06-08 09:43:21,let me life,1,1,1,0,1,1,1,0,1,0,"athletic, endurance, crimpy, technical","overhang, vertical, slab",84608,0.0,25,7b,0.0,25.0
+84609,Il Ladro di Saponette,8a,vl-29,french,23,5289,21,2017-06-08 09:43:22,il ladro di saponette,0,1,0,0,0,0,0,1,0,0,cruxy,vertical,84609,1.0,29,8a+,1.0,30.0
+84610,C'è Qualcuno che non Sa,7c,vl-27,french,25,5289,22,2017-06-08 09:43:22,c'è qualcuno che non sa,4,6,0,0,2,6,4,6,3,0,"athletic, endurance, crimpy, cruxy, technical","overhang, vertical",84610,0.0,27,7c,0.0,27.0
+84611,Deasy,6c+,vl-22,french,25,5289,23,2017-06-08 09:43:22,deasy,0,0,0,0,0,0,0,0,0,0, , ,84611,-1.0,22,6c,-1.0,21.0
+84612,Tis Sa Arc,6c,vl-21,french,25,5289,24,2017-06-08 09:43:22,tis sa arc,0,0,0,0,0,0,0,0,0,0, , ,84612,-1.82,21,6b+,-2.0,19.0
+84613,Cannonau,7a,vl-23,french,25,5289,25,2017-06-08 09:43:22,cannonau,1,1,0,0,1,1,0,0,0,0,"athletic, endurance","overhang, vertical",84613,0.0,23,7a,0.0,23.0
+84614,Crisi,7a,vl-23,french,25,5289,26,2017-06-08 09:44:38,crisi,3,7,0,0,4,4,0,1,1,0,"athletic, endurance, cruxy, technical","overhang, vertical",84614,1.0,23,7a+,1.0,24.0
+84615,Via le Man,7a,vl-23,french,25,5289,27,2017-06-08 09:44:39,via le man,1,1,0,0,1,0,0,1,0,0,"athletic, cruxy","overhang, vertical",84615,0.0,23,7a,0.0,23.0
+84616,Marlene,7b,vl-25,french,25,5289,28,2017-06-08 09:44:39,marlene,3,4,0,0,2,5,1,5,1,0,"athletic, endurance, crimpy, cruxy, technical","overhang, vertical",84616,0.0,25,7b,0.0,25.0
+84617,Greta,7a,vl-23,french,25,5289,29,2017-06-08 09:44:39,greta,1,2,0,0,2,2,0,0,0,0,"athletic, endurance","overhang, vertical",84617,0.0,23,7a,0.0,23.0
+84619,Sulla Pancia,7c+,vl-28,french,25,5289,31,2017-06-08 09:44:40,sulla pancia,0,0,0,0,0,0,0,0,0,0, , ,84619,0.0,28,7c+,0.0,28.0
+84620,Variante Diretta,7b+,vl-26,french,25,5289,32,2017-06-08 09:44:40,variante diretta,0,0,0,0,0,1,1,1,1,0,"endurance, crimpy, cruxy, technical", ,84620,0.0,26,7b+,0.0,26.0
+84621,Mantide Atea,6c+,vl-22,french,25,5289,33,2017-06-08 09:44:40,mantide atea,0,1,0,0,0,0,0,0,0,0, ,vertical,84621,1.0,22,7a,1.0,23.0
+84622,I Buoni Cattivi,7c,vl-27,french,25,5289,34,2017-06-08 09:44:40,i buoni cattivi,0,0,0,0,0,0,0,0,0,0, , ,84622,0.0,27,7c,0.0,27.0
+84623,Sangit,7b,vl-25,french,25,5289,35,2017-06-08 09:44:40,sangit,0,0,0,0,0,1,0,0,0,0,endurance, ,84623,-1.0,25,7a+,-1.0,24.0
+84624,Panico sopra l'Orlo,7c,vl-27,french,25,5289,36,2017-06-08 09:44:40,panico sopra l'orlo,0,1,0,0,0,1,1,1,0,0,"endurance, crimpy, cruxy",vertical,84624,0.0,27,7c,0.0,27.0
+84625,Profumo di Invisibile,8a,vl-29,french,25,5289,37,2017-06-08 09:44:40,profumo di invisibile,0,1,0,1,0,0,0,0,0,0, ,"vertical, roof",84625,0.0,29,8a,0.0,29.0
+84626,Soviet Supremo,7b,vl-25,french,25,5289,38,2017-06-08 09:44:40,soviet supremo,0,0,0,0,0,0,0,0,0,0, , ,84626,0.0,25,7b,0.0,25.0
+84627,Berverly Hills,7b+,vl-26,french,25,5289,39,2017-06-08 09:44:40,berverly hills,0,0,0,0,0,0,0,0,0,0, , ,84627,0.0,26,7b+,0.0,26.0
+84628,Kabul,6b+,vl-19,french,25,5289,40,2017-06-08 09:44:41,kabul,0,0,0,0,0,0,0,0,0,0, , ,84628,-0.73,19,6b,-1.0,18.0
+84629,I like Gorba,6c,vl-21,french,27,5289,41,2017-06-08 09:44:41,i like gorba,0,2,0,0,0,0,0,1,0,0,cruxy,vertical,84629,1.0,21,6c+,1.0,22.0
+84630,Killer Event,7b+,vl-26,french,20,5289,42,2017-06-08 09:44:41,killer event,2,2,0,0,0,1,1,1,1,1,"endurance, crimpy, cruxy, technical, sloper","overhang, vertical",84630,0.0,26,7b+,0.0,26.0
+84631,Action Direct,7a,vl-23,french,25,5289,43,2017-06-08 09:44:41,action direct,3,4,0,0,3,5,1,0,2,0,"athletic, endurance, crimpy, technical","overhang, vertical",84631,-0.91,23,6c+,-1.0,22.0
+84632,Incantesimo,8a,vl-29,french,20,5289,44,2017-06-08 09:44:41,incantesimo,0,0,0,0,0,0,0,0,0,0, , ,84632,0.0,29,8a,0.0,29.0
+84633,Ricky Bike,8a,vl-29,french,20,5289,45,2017-06-08 09:44:41,ricky bike,0,0,0,0,0,0,0,0,0,0, , ,84633,0.0,29,8a,0.0,29.0

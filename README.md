@@ -1,2 +1,1 @@
-# Arco-climbing-recommender
-Climbing recommender system in Arco, Italy
+Recommender system for crags and for climbing routes
