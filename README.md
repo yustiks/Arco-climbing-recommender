@@ -24,6 +24,10 @@ Q14: What type of climbing guidebook do you usually use?
 
 ![Question 14 summary](/Usability_study/img/Q14.png?raw=true "Participants' type of climbing guidebooks")
 
+Q14.1: The name of e-climbing guidebook source?
+
+![Question 14.1 summary](/Usability_study/img/Q14.1.png?raw=true "Name of e-climbing guidebook source")
+
 Q15: What is your prefereed climbing styles?
 
 ![Question 15 summary](/Usability_study/img/Q15.png?raw=true "Participants' climbing styles")
