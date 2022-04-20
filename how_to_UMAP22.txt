@@ -1,0 +1,21 @@
+﻿How the Content-Based Climbing Recommender System for UMAP Demo paper (2022) will be demonstrated.
+
+
+The system is currently running as a website hosted in the domain:
+http://arco-climbing-recommender.site/login
+
+
+In order to enter the system, one should insert their login (id from Vertical-Life climbing application), and password (‘admin’) from the computer (mobile version is not supported by this application). We provide several ids to test the system. Those ids are the one which is provided by Vertical-Life company. The preferences of the user will be shown on the left-hand side panel.
+
+
+The list of available ids are: [   141,    405,    584,    320,   1113,    574,   6502,   1980, 401,    704,   6536,   9975,   3890,   7278,   4716,  19759,
+        10875,  17619,  19613,    920,   6835,   6909,     71,  18602,
+        25502,   1718,  31092,    337,   9552,   9591,  29496,  17649,
+         5155,  24533,   5372,  10703,  23662,  28495,    998,  37232,
+        22263,  10370,  15010,  36690,  35035,  39030,  15911,  22163,
+         7184,  44592,   6889,  40358,   2823,  47297,  44468,   9628,
+        28570,  47664,   2994,  48287,  44981,  48312,  31242,  31899,
+        48360,  25456,  19808,  48786,   8541,  48485,  48570,  44829]
+
+
+After the user insert his/her id and provided password, they will see the webpage with climbing crags in Arco, Italy. After adjusting their preferences, and choosing a certain type of recommendation (favorite moves and training), the users should push the button ‘Recommend’ to see recommended climbing crags in the webpage. There will be shown the explanation why the crags are recommended. When they click the Massone crag, they will see the new page with climbing routes within this crag. The users will be able to choose certain type recommendations for climbing routes (training, motivation, favorite moves) and receive recommendations by pushing the button ‘Recommend’.
