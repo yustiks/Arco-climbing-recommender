@@ -4,7 +4,10 @@ In this repository, the prototype for Recommender System for climbing crags and 
 In addition, we included Usability Study results.
 
 How to run website:
-clone the repository, install flask library, and run throuh the flask.
+clone the repository, install flask library, and run throuh the flask:
+```
+python app.py
+```
 
 Usability results:
 
