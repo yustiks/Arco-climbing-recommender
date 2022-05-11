@@ -6,7 +6,7 @@ The webpage currently running:
 ```
 http://arco-climbing-recommender.site/login
 ```
-password can be found in the paper.
+password 'admin'.
 
 In addition, we included Usability Study results.
 
