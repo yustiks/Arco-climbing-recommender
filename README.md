@@ -1,4 +1,4 @@
-**Recommender system for crags and for climbing routes**
+**Recommender system for crags and climbing routes in Arco, Italy**
 _______________________________________________________________________________________________________________
 
 In this repository, the prototype for Recommender System for climbing crags and climbing routes is published.
