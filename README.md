@@ -1,14 +1,27 @@
-Recommender system for crags and for climbing routes
+**Recommender system for crags and for climbing routes**
 
 In this repository, the prototype for Recommender System for climbing crags and climbing routes is published.
 In addition, we included Usability Study results.
 
 How to run website:
-clone the repository, install flask library, and run throuh the flask:
+clone the repository, create new environment:
 ```
-python app.py
+python3 -m venv env
 ```
-
+activate environment:
+```
+source env/bin/activate
+```
+install flask and other libraries via pip:
+```
+pip install -r requirements.txt
+```
+and run throuh the flask:
+```
+flask run
+```
+By default, Flask will run the application you defined in app.py on port 5000. While the application is running, go to http://localhost:5000 using your web browser. You’ll see a web page containing the system interface.
+_______________________________________________________________________________________________________________
 Usability results:
 
 Q11: What is your age?
