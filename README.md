@@ -37,7 +37,7 @@ The survey design is here: /Usability_study/version1/SurveyMonkeyDesign.pdf
 
 The survey result is here: /Usability_study/version1/ClimbingRecommenderResults.xlsx
 
-videos are recorded here: https://drive.google.com/drive/folders/15fOHzNZd8VAw3TLZm6892pO2p10F6YZX?usp=sharing
+Videos are recorded here: https://drive.google.com/drive/folders/15fOHzNZd8VAw3TLZm6892pO2p10F6YZX?usp=sharing
 
 Demographical questions results:
 
@@ -72,4 +72,4 @@ The survey design is here: /Usability_study/version2/ClimbingRecommenderSurveyDe
 
 The survey result is here: /Usability_study/version2/ClimbingRecommenderSurveyResult.xlsx
 
-videos are recorded here: https://drive.google.com/drive/folders/1AmV-t-hYf6G5vv1oXpSNvjydKzYX6yUs?usp=sharing
+Videos are recorded here: https://drive.google.com/drive/folders/1AmV-t-hYf6G5vv1oXpSNvjydKzYX6yUs?usp=sharing
