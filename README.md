@@ -30,10 +30,11 @@ flask run
 By default, Flask will run the application you defined in app.py on port 5000. While the application is running, go to http://localhost:5000 using your web browser. You’ll see a web page containing the system interface.
 _______________________________________________________________________________________________________________
 Usability results:
-
+_______________________________________________________________________________________________________________
 prototype, version 1:
+_______________________________________________________________________________________________________________
+The survey is here: 
 videos are recorded here: https://drive.google.com/drive/folders/15fOHzNZd8VAw3TLZm6892pO2p10F6YZX?usp=sharing
-
 
 Demographical questions results:
 
@@ -60,8 +61,10 @@ Q14.1: The name of e-climbing guidebook source?
 Q15: What is your prefereed climbing styles?
 
 ![Question 15 summary](/Usability_study/img/Q15.png?raw=true "Participants' climbing styles")
-
-
+_______________________________________________________________________________________________________________
 prototype, version 2:
+_______________________________________________________________________________________________________________
+
+The survey is here: 
 
 videos are recorded here: https://drive.google.com/drive/folders/1AmV-t-hYf6G5vv1oXpSNvjydKzYX6yUs?usp=sharing
