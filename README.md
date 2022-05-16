@@ -2,13 +2,11 @@
 _______________________________________________________________________________________________________________
 
 In this repository, the prototype for Recommender System for climbing crags and climbing routes is published.
-The webpage currently running:
-
-http://arco-climbing-recommender.site/login
-
-password 'admin'.
 
 In addition, we included Usability Study results.
+_______________________________________________________________________________________________________________
+Code is provided for the first version of the prototype (see figure 1 in paper Iustina Ivanova, Attaullah Buriro, Francesco Ricci "Map and Content Based Climbing Recommender").
+_______________________________________________________________________________________________________________
 
 How to run website:
 clone the repository, create new environment:
@@ -33,6 +31,12 @@ Usability results:
 _______________________________________________________________________________________________________________
 prototype, version 1
 _______________________________________________________________________________________________________________
+The working code is prototype is located in the website:
+
+http://arco-climbing-recommender.site/login
+
+password 'admin'
+
 The survey design is here: /Usability_study/version1/SurveyMonkeyDesign.pdf
 
 The survey result is here: /Usability_study/version1/ClimbingRecommenderResults.xlsx
