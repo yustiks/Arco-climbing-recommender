@@ -25,6 +25,10 @@ and run throuh the flask:
 ```
 flask run
 ```
+or
+```
+python3 app.py
+```
 By default, Flask will run the application you defined in app.py on port 5000. While the application is running, go to http://localhost:5000 using your web browser. You’ll see a web page containing the system interface.
 _______________________________________________________________________________________________________________
 Usability results:
