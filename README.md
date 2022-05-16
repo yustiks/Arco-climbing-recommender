@@ -35,7 +35,7 @@ Usability results:
 _______________________________________________________________________________________________________________
 prototype, version 1
 _______________________________________________________________________________________________________________
-The working code is prototype is located in the website:
+The working website:
 
 http://arco-climbing-recommender.site/login
 
@@ -75,6 +75,12 @@ Q15: What is your prefereed climbing styles?
 _______________________________________________________________________________________________________________
 prototype, version 2:
 _______________________________________________________________________________________________________________
+The working website:
+
+http://neumann.inf.unibz.it:8080/login
+
+password 'admin'
+
 
 The survey design is here: /Usability_study/version2/ClimbingRecommenderSurveyDesign.pdf
 
