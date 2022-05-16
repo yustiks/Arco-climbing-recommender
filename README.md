@@ -43,7 +43,7 @@ password 'admin'
 
 [The survey result is here](/Usability_study/version1/ClimbingRecommenderResults.xlsx)
 
-[Videos are recorded here](https://drive.google.com/drive/folders/15fOHzNZd8VAw3TLZm6892pO2p10F6YZX?usp=sharing)
+[Videos are recorded here](https://drive.google.com/drive/folders/1L1KPuFn-kdoKVzIbtnrbC6hbjlAx4Zd2?usp=sharing)
 
 Demographical questions results:
 
