@@ -35,17 +35,15 @@ Usability results:
 _______________________________________________________________________________________________________________
 prototype, version 1
 _______________________________________________________________________________________________________________
-The working website:
-
-http://arco-climbing-recommender.site/login
+[The working website](http://arco-climbing-recommender.site/login)
 
 password 'admin'
 
-The survey design is here: /Usability_study/version1/SurveyMonkeyDesign.pdf
+[The survey design is here](/Usability_study/version1/SurveyMonkeyDesign.pdf)
 
-The survey result is here: /Usability_study/version1/ClimbingRecommenderResults.xlsx
+[The survey result is here](/Usability_study/version1/ClimbingRecommenderResults.xlsx)
 
-Videos are recorded here: https://drive.google.com/drive/folders/15fOHzNZd8VAw3TLZm6892pO2p10F6YZX?usp=sharing
+[Videos are recorded here](https://drive.google.com/drive/folders/15fOHzNZd8VAw3TLZm6892pO2p10F6YZX?usp=sharing)
 
 Demographical questions results:
 
@@ -75,15 +73,12 @@ Q15: What is your prefereed climbing styles?
 _______________________________________________________________________________________________________________
 prototype, version 2:
 _______________________________________________________________________________________________________________
-The working website:
-
-http://neumann.inf.unibz.it:8080/login
+[The working website](http://neumann.inf.unibz.it:8080/login)
 
 password 'admin'
 
+[The survey design is here](/Usability_study/version2/ClimbingRecommenderSurveyDesign.pdf)
 
-The survey design is here: /Usability_study/version2/ClimbingRecommenderSurveyDesign.pdf
+[The survey result is here](/Usability_study/version2/ClimbingRecommenderSurveyResult.xlsx)
 
-The survey result is here: /Usability_study/version2/ClimbingRecommenderSurveyResult.xlsx
-
-Videos are recorded here: https://drive.google.com/drive/folders/1AmV-t-hYf6G5vv1oXpSNvjydKzYX6yUs?usp=sharing
+[Videos are recorded here](https://drive.google.com/drive/folders/1AmV-t-hYf6G5vv1oXpSNvjydKzYX6yUs?usp=sharing)
