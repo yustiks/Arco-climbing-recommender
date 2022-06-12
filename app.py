@@ -43,8 +43,10 @@ def find_recommendations_for_crags(checked_styles, checked_styles_least, checked
 
         if type_recommendation == 'favourite':
             styles_to_compare = checked_styles
-        else:
+        elif type_recommendation == 'training':
             styles_to_compare = checked_styles_least
+        elif type_recommendation == 'motivation':
+            styles_to_compare = checked_styles
 
         for points in parsed:
             flag_style, flag_steepness, flag_grade = False, False, False
@@ -202,7 +204,9 @@ def recommended_routes():
         user_id, args)
     if dic_preferences['type_recommendation'] == 'training':
         styles_to_compare = checked_styles_least
-    else:
+    elif dic_preferences['type_recommendation'] == 'favourite':
+        styles_to_compare = checked_styles
+    elif dic_preferences['type_recommendation'] == 'motivation':
         styles_to_compare = checked_styles
 
     routes = {}
@@ -272,6 +276,16 @@ def recommended_crags():
     user_id_entered = int(args.get('user_id'))
     if args.get('action') == 'refresh':
         user_data = users_profiles[users_profiles['user_id'] == user_id_entered]
+        if len(user_data) > 0:
+            settings_dic = render_refresh_page(user_id_entered, user_data)
+            return render_template('index.html',
+                                   markers=markers,
+                                   data=settings_dic,
+                                   explanation_on='off'
+                                   )
+    elif args.get('action') == 'search':
+        user_data = users_profiles[users_profiles['user_id'] == user_id_entered]
+        markers
         if len(user_data) > 0:
             settings_dic = render_refresh_page(user_id_entered, user_data)
             return render_template('index.html',
