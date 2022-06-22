@@ -47,11 +47,14 @@ def find_recommendations_for_crags(checked_styles, checked_styles_least, checked
             styles_to_compare = checked_styles_least
         elif type_recommendation == 'motivation':
             styles_to_compare = checked_styles
-
+        # TODO: grades that are easier than expected should be given for motivation
         for points in parsed:
             flag_style, flag_steepness, flag_grade = False, False, False
             grade_name = 'vl-' + str(points['gradeIndex'])
-            if (dic_grades_reverse_GUI[grade_name] in checked_grades.keys()) or (len(checked_grades.keys()) == 0):
+            if ((dic_grades_reverse_GUI[grade_name] in checked_grades.keys()) and (
+                    (type_recommendation == 'favourite') or (type_recommendation == 'training'))) or (
+                    (type_recommendation == 'motivation') and (points['dev'] <= -1)) or (
+                    len(checked_grades.keys()) == 0):
                 flag_grade = True
             for each_style in list_styles:
                 if (points[each_style] == 1 and each_style in styles_to_compare.keys()) or (
@@ -265,11 +268,6 @@ def login():
         return render_template('login.html', error='')
 
 
-@application.route("/temp", methods=('GET', 'POST'))
-def temp():
-    return render_template('temp.html', error='')
-
-
 @application.route("/recommended_crags", methods=('GET', 'POST'))
 def recommended_crags():
     args = request.args
@@ -285,7 +283,7 @@ def recommended_crags():
                                    )
     elif args.get('action') == 'search':
         user_data = users_profiles[users_profiles['user_id'] == user_id_entered]
-        markers
+        # TODO: search the crag
         if len(user_data) > 0:
             settings_dic = render_refresh_page(user_id_entered, user_data)
             return render_template('index.html',
@@ -308,9 +306,11 @@ def recommended_crags():
         explanation_sentence += 'but you might be interested to visit the most popular crags'
     else:
         if dic_preferences['type_recommendation'] == 'training':
-            explanation_sentence = 'For your training, we recommend you the crags having climbing routes of '
-        else:
-            explanation_sentence = 'For your favourite climbing style, we recommend you the crags having climbing routes of '
+            explanation_sentence = 'For your training, we recommend you crags having climbing routes of '
+        elif dic_preferences['type_recommendation'] == 'favourite':
+            explanation_sentence = 'For your favourite climbing style, we recommend you crags having climbing routes of '
+        elif dic_preferences['type_recommendation'] == 'motivation':
+            explanation_sentence = 'For your motivation, we recommend you crags having easy climbing routes of '
         # begin explanation sentence
         if len(checked_grades) > 0:
             for each_grade in checked_grades:
