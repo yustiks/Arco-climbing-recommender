@@ -68,3 +68,8 @@ html, body, #map {
     font-size: 1.3rem;
     margin-bottom: .5rem;
 }
+
+#carousel_for_crags {
+    max-width: 600px;
+    margin: 0 auto;
+}

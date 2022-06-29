@@ -9,10 +9,11 @@ from grades_info import dic_grades_reverse_GUI, dic_grades_GUI
 
 application = Flask(__name__)
 
-crags = pd.read_csv('db/crags_Arco_v2.csv', header=0,
+crags = pd.read_csv('static/db/crags_Arco_v2.csv', header=0,
                     names=['name', 'lat', 'long', 'vllocationid', 'cragSlug', 'ascents', 'routes'])
-users_profiles = pd.read_csv('./db/users_Arco_v4.csv')
-sporclimbing_routes = pd.read_csv('./db/Arco_routes_v6.csv')
+users_profiles = pd.read_csv('static/db/users_Arco_v4.csv')
+sporclimbing_routes = pd.read_csv('static/db/Arco_routes_v6.csv')
+dic_crags_sectors_pic = json.load(open('static/db/dic_crags_sectors_pic.json'))
 
 password = 'admin'
 
@@ -149,11 +150,14 @@ def render_refresh_page(user_id, user_data):
 
 
 def render_refresh_route(args):
+    # rendering of the climbing routes in the page of routes
     user_id = int(args.get('user_id'))
     dic_preferences, checked_styles, checked_styles_least, checked_steepness, checked_grades = load_preferences_from_get_request(
         user_id, args)
     cragSlug = args.get('cragSlug')
     cragName = args.get('cragName')
+    # TODO: print all the sectors in the image page
+    sectors_list = dic_crags_sectors_pic[cragName]
     ds_current_routes = sporclimbing_routes[sporclimbing_routes.cragSlug == cragSlug]
     result = ds_current_routes.to_json(orient="records")
     parsed = json.loads(result)
@@ -167,7 +171,8 @@ def render_refresh_route(args):
     return render_template('routes.html', data=dic_preferences,
                            routes=routes,
                            cragSlug=cragSlug,
-                           cragName=cragName)
+                           cragName=cragName,
+                           sectors_list=sectors_list)
 
 
 @application.route('/index', methods=('GET', 'POST'))
@@ -199,6 +204,9 @@ def recommended_routes():
     user_id = int(args.get('user_id'))
     cragSlug = args.get('cragSlug')
     cragName = args.get('cragName')
+    # TODO add pictures of crags
+    sectors_list = dic_crags_sectors_pic[cragName]
+
     ds_current_routes = sporclimbing_routes[sporclimbing_routes.cragSlug == cragSlug]
     result = ds_current_routes.to_json(orient="records")
     parsed = json.loads(result)
@@ -242,7 +250,8 @@ def recommended_routes():
     return render_template('routes.html', data=dic_preferences,
                            routes=routes,
                            cragSlug=cragSlug,
-                           cragName=cragName)
+                           cragName=cragName,
+                           sectors_list=sectors_list)
 
 
 @application.route("/login", methods=('GET', 'POST'))

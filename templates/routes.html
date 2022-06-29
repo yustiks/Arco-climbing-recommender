@@ -276,6 +276,36 @@
 
                     <div class="jumbotron text-center">
                         <h1>Climbing routes recommender in crag {{ cragName }} </h1>
+<!-- Carousel of sectors wrapper -->
+<div id="carousel_for_crags" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    {% for sector_name in sectors_list %}
+    <button type="button" data-bs-target="#carousel_for_crags" data-bs-slide-to="{{ loop.index - 1 }}" {% if loop.index == 1 %} class="active" aria-current="true" {% endif %}  aria-label="Slide {{ loop.index }}"></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner">
+    {% for sector_name in sectors_list %}
+        {% set file_name_pic = 'img/VL_crags/' ~ cragName ~ '/' ~ sector_name ~ '.png' %}
+        <div class="carousel-item {% if loop.index == 1 %} active{% endif %}">
+          <img src='{{ url_for('static', filename=file_name_pic) }}' class="d-block w-100" alt="{{ file_name_pic }}">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Sector {{ sector_name}}</h5>
+            <p></p>
+          </div>
+        </div>
+    {% endfor %}
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel_for_crags" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel_for_crags" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- END Carousel of sectors wrapper -->
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="full_list">
                                 <table class="table table-responsive-md" id="table_sportclimbing">
