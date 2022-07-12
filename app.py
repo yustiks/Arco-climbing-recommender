@@ -9,7 +9,7 @@ from grades_info import dic_grades_reverse_GUI, dic_grades_GUI
 
 application = Flask(__name__)
 
-crags = pd.read_csv('static/db/crags_Arco_v2.csv', header=0,
+crags = pd.read_csv('static/db/crags_Arco_v3.csv', header=0, delimiter=';',
                     names=['name', 'lat', 'long', 'vllocationid', 'cragSlug', 'ascents', 'routes'])
 users_profiles = pd.read_csv('static/db/users_Arco_v4.csv')
 sporclimbing_routes = pd.read_csv('static/db/Arco_routes_v6.csv')
